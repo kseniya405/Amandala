@@ -3,19 +3,30 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C9B48BE4B9D3F55C77160EC /* Pods_Amandala.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE524FECFAF42662CBAEA28B /* Pods_Amandala.framework */; };
 		9D48983023BDE25A001EC93B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48982F23BDE25A001EC93B /* AppDelegate.swift */; };
 		9D48983223BDE25A001EC93B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48983123BDE25A001EC93B /* SceneDelegate.swift */; };
 		9D48983423BDE25A001EC93B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48983323BDE25A001EC93B /* ViewController.swift */; };
 		9D48983723BDE25A001EC93B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D48983523BDE25A001EC93B /* Main.storyboard */; };
 		9D48983923BDE25B001EC93B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D48983823BDE25B001EC93B /* Assets.xcassets */; };
 		9D48983C23BDE25C001EC93B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D48983A23BDE25B001EC93B /* LaunchScreen.storyboard */; };
+		9D48984423BE17E4001EC93B /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48984323BE17E4001EC93B /* UIColor+HEX.swift */; };
+		9D48984623BE1C4F001EC93B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48984523BE1C4F001EC93B /* Colors.swift */; };
+		9D48984A23BE1FB0001EC93B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48984923BE1FB0001EC93B /* Strings.swift */; };
+		9D48984C23BE32E9001EC93B /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48984B23BE32E9001EC93B /* UIView+CornerRadius.swift */; };
+		9D48984E23BE4E1C001EC93B /* 1.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9D48984D23BE4E1C001EC93B /* 1.svg */; };
+		9D67CCAC23BF917D00D3C429 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D67CCAA23BF917C00D3C429 /* LinkedList.swift */; };
+		9D67CCAD23BF917D00D3C429 /* FloodImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D67CCAB23BF917C00D3C429 /* FloodImage.swift */; };
+		9D711D6223C63A0B00F01E1A /* 2.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9D711D6123C63A0B00F01E1A /* 2.svg */; };
+		9D711D6423C63BDF00F01E1A /* 3.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9D711D6323C63BDF00F01E1A /* 3.svg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D7BD7D392793E8830505CED /* Pods-Amandala.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amandala.release.xcconfig"; path = "Target Support Files/Pods-Amandala/Pods-Amandala.release.xcconfig"; sourceTree = "<group>"; };
 		9D48982C23BDE25A001EC93B /* Amandala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amandala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D48982F23BDE25A001EC93B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D48983123BDE25A001EC93B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +35,17 @@
 		9D48983823BDE25B001EC93B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D48983B23BDE25B001EC93B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D48983D23BDE25C001EC93B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D48984323BE17E4001EC93B /* UIColor+HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
+		9D48984523BE1C4F001EC93B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		9D48984923BE1FB0001EC93B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		9D48984B23BE32E9001EC93B /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
+		9D48984D23BE4E1C001EC93B /* 1.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 1.svg; path = "../../../../../Downloads/Source files/Mandala drawings sorted/Easy/1.svg"; sourceTree = "<group>"; };
+		9D67CCAA23BF917C00D3C429 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkedList.swift; path = ../../../../FloodFill/FloodFillAlgoritm/LinkedList.swift; sourceTree = "<group>"; };
+		9D67CCAB23BF917C00D3C429 /* FloodImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloodImage.swift; path = ../../../../FloodFill/FloodFillAlgoritm/FloodImage.swift; sourceTree = "<group>"; };
+		9D711D6123C63A0B00F01E1A /* 2.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 2.svg; path = "../../../../../Downloads/Source files/Mandala drawings sorted/Animals Symbols/2.svg"; sourceTree = "<group>"; };
+		9D711D6323C63BDF00F01E1A /* 3.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 3.svg; path = "../../../../../Downloads/Source files/Mandala drawings sorted/Medium/3.svg"; sourceTree = "<group>"; };
+		BE524FECFAF42662CBAEA28B /* Pods_Amandala.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amandala.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEC8A505C6E1FE3A1E736BE1 /* Pods-Amandala.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amandala.debug.xcconfig"; path = "Target Support Files/Pods-Amandala/Pods-Amandala.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C9B48BE4B9D3F55C77160EC /* Pods_Amandala.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +65,8 @@
 			children = (
 				9D48982E23BDE25A001EC93B /* Amandala */,
 				9D48982D23BDE25A001EC93B /* Products */,
+				A8C8BDB5F4353DE32B597679 /* Pods */,
+				BBC5272506142FBA1E2D0C0B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,11 +85,53 @@
 				9D48983123BDE25A001EC93B /* SceneDelegate.swift */,
 				9D48983323BDE25A001EC93B /* ViewController.swift */,
 				9D48983523BDE25A001EC93B /* Main.storyboard */,
+				9D67CCAB23BF917C00D3C429 /* FloodImage.swift */,
+				9D67CCAA23BF917C00D3C429 /* LinkedList.swift */,
+				9D48984723BE1F6C001EC93B /* Utilits */,
+				9D48984823BE1F79001EC93B /* Resources */,
 				9D48983823BDE25B001EC93B /* Assets.xcassets */,
+				9D711D6323C63BDF00F01E1A /* 3.svg */,
+				9D711D6123C63A0B00F01E1A /* 2.svg */,
+				9D48984D23BE4E1C001EC93B /* 1.svg */,
 				9D48983A23BDE25B001EC93B /* LaunchScreen.storyboard */,
 				9D48983D23BDE25C001EC93B /* Info.plist */,
 			);
 			path = Amandala;
+			sourceTree = "<group>";
+		};
+		9D48984723BE1F6C001EC93B /* Utilits */ = {
+			isa = PBXGroup;
+			children = (
+				9D48984323BE17E4001EC93B /* UIColor+HEX.swift */,
+				9D48984B23BE32E9001EC93B /* UIView+CornerRadius.swift */,
+			);
+			path = Utilits;
+			sourceTree = "<group>";
+		};
+		9D48984823BE1F79001EC93B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9D48984523BE1C4F001EC93B /* Colors.swift */,
+				9D48984923BE1FB0001EC93B /* Strings.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A8C8BDB5F4353DE32B597679 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DEC8A505C6E1FE3A1E736BE1 /* Pods-Amandala.debug.xcconfig */,
+				4D7BD7D392793E8830505CED /* Pods-Amandala.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BBC5272506142FBA1E2D0C0B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE524FECFAF42662CBAEA28B /* Pods_Amandala.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +141,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9D48984023BDE25C001EC93B /* Build configuration list for PBXNativeTarget "Amandala" */;
 			buildPhases = (
+				BB5DF05D6EA22D72C71F01D8 /* [CP] Check Pods Manifest.lock */,
 				9D48982823BDE25A001EC93B /* Sources */,
 				9D48982923BDE25A001EC93B /* Frameworks */,
 				9D48982A23BDE25A001EC93B /* Resources */,
+				1C2F3CEACCBDA0C842E2053E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,6 +194,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D711D6423C63BDF00F01E1A /* 3.svg in Resources */,
+				9D48984E23BE4E1C001EC93B /* 1.svg in Resources */,
+				9D711D6223C63A0B00F01E1A /* 2.svg in Resources */,
 				9D48983C23BDE25C001EC93B /* LaunchScreen.storyboard in Resources */,
 				9D48983923BDE25B001EC93B /* Assets.xcassets in Resources */,
 				9D48983723BDE25A001EC93B /* Main.storyboard in Resources */,
@@ -133,13 +205,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C2F3CEACCBDA0C842E2053E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Amandala/Pods-Amandala-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Amandala/Pods-Amandala-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Amandala/Pods-Amandala-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB5DF05D6EA22D72C71F01D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Amandala-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9D48982823BDE25A001EC93B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9D48983423BDE25A001EC93B /* ViewController.swift in Sources */,
+				9D48984623BE1C4F001EC93B /* Colors.swift in Sources */,
+				9D48984423BE17E4001EC93B /* UIColor+HEX.swift in Sources */,
 				9D48983023BDE25A001EC93B /* AppDelegate.swift in Sources */,
+				9D48984A23BE1FB0001EC93B /* Strings.swift in Sources */,
+				9D67CCAD23BF917D00D3C429 /* FloodImage.swift in Sources */,
+				9D48984C23BE32E9001EC93B /* UIView+CornerRadius.swift in Sources */,
+				9D67CCAC23BF917D00D3C429 /* LinkedList.swift in Sources */,
 				9D48983223BDE25A001EC93B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +402,7 @@
 		};
 		9D48984123BDE25C001EC93B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEC8A505C6E1FE3A1E736BE1 /* Pods-Amandala.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +421,7 @@
 		};
 		9D48984223BDE25C001EC93B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D7BD7D392793E8830505CED /* Pods-Amandala.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
