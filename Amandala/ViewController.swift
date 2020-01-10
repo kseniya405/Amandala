@@ -20,12 +20,10 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         topBarView.round(corners: [.bottomLeft, .bottomRight], radius: 50)
     }
- 
-    var imageSet = UIImage(named: "2")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let image = SVGKImage(named: "2.svg").uiImage
+        let image = SVGKImage(named: "3.svg").uiImage
         mandalaImage.originImage = image
         mandalaImage.contentMode = .scaleAspectFill
         mandalaImage.isUserInteractionEnabled = true

@@ -18,11 +18,11 @@
 		9D48984623BE1C4F001EC93B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48984523BE1C4F001EC93B /* Colors.swift */; };
 		9D48984A23BE1FB0001EC93B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48984923BE1FB0001EC93B /* Strings.swift */; };
 		9D48984C23BE32E9001EC93B /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48984B23BE32E9001EC93B /* UIView+CornerRadius.swift */; };
-		9D48984E23BE4E1C001EC93B /* 1.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9D48984D23BE4E1C001EC93B /* 1.svg */; };
-		9D67CCAC23BF917D00D3C429 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D67CCAA23BF917C00D3C429 /* LinkedList.swift */; };
-		9D67CCAD23BF917D00D3C429 /* FloodImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D67CCAB23BF917C00D3C429 /* FloodImage.swift */; };
-		9D711D6223C63A0B00F01E1A /* 2.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9D711D6123C63A0B00F01E1A /* 2.svg */; };
-		9D711D6423C63BDF00F01E1A /* 3.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9D711D6323C63BDF00F01E1A /* 3.svg */; };
+		9DFF143623C7FB7800A6C980 /* FloodImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF143523C7FB7800A6C980 /* FloodImage.swift */; };
+		9DFF143823C7FBAC00A6C980 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF143723C7FBAC00A6C980 /* LinkedList.swift */; };
+		9DFF143C23C7FC0F00A6C980 /* 3.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9DFF143923C7FC0E00A6C980 /* 3.svg */; };
+		9DFF143D23C7FC0F00A6C980 /* 1.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9DFF143A23C7FC0E00A6C980 /* 1.svg */; };
+		9DFF143E23C7FC0F00A6C980 /* 2.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9DFF143B23C7FC0F00A6C980 /* 2.svg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,11 +39,11 @@
 		9D48984523BE1C4F001EC93B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		9D48984923BE1FB0001EC93B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		9D48984B23BE32E9001EC93B /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
-		9D48984D23BE4E1C001EC93B /* 1.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 1.svg; path = "../../../../../Downloads/Source files/Mandala drawings sorted/Easy/1.svg"; sourceTree = "<group>"; };
-		9D67CCAA23BF917C00D3C429 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkedList.swift; path = ../../../../FloodFill/FloodFillAlgoritm/LinkedList.swift; sourceTree = "<group>"; };
-		9D67CCAB23BF917C00D3C429 /* FloodImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloodImage.swift; path = ../../../../FloodFill/FloodFillAlgoritm/FloodImage.swift; sourceTree = "<group>"; };
-		9D711D6123C63A0B00F01E1A /* 2.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 2.svg; path = "../../../../../Downloads/Source files/Mandala drawings sorted/Animals Symbols/2.svg"; sourceTree = "<group>"; };
-		9D711D6323C63BDF00F01E1A /* 3.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 3.svg; path = "../../../../../Downloads/Source files/Mandala drawings sorted/Medium/3.svg"; sourceTree = "<group>"; };
+		9DFF143523C7FB7800A6C980 /* FloodImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodImage.swift; sourceTree = "<group>"; };
+		9DFF143723C7FBAC00A6C980 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		9DFF143923C7FC0E00A6C980 /* 3.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 3.svg; sourceTree = "<group>"; };
+		9DFF143A23C7FC0E00A6C980 /* 1.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 1.svg; sourceTree = "<group>"; };
+		9DFF143B23C7FC0F00A6C980 /* 2.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 2.svg; sourceTree = "<group>"; };
 		BE524FECFAF42662CBAEA28B /* Pods_Amandala.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amandala.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEC8A505C6E1FE3A1E736BE1 /* Pods-Amandala.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amandala.debug.xcconfig"; path = "Target Support Files/Pods-Amandala/Pods-Amandala.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,16 +85,13 @@
 				9D48983123BDE25A001EC93B /* SceneDelegate.swift */,
 				9D48983323BDE25A001EC93B /* ViewController.swift */,
 				9D48983523BDE25A001EC93B /* Main.storyboard */,
-				9D67CCAB23BF917C00D3C429 /* FloodImage.swift */,
-				9D67CCAA23BF917C00D3C429 /* LinkedList.swift */,
 				9D48984723BE1F6C001EC93B /* Utilits */,
 				9D48984823BE1F79001EC93B /* Resources */,
 				9D48983823BDE25B001EC93B /* Assets.xcassets */,
-				9D711D6323C63BDF00F01E1A /* 3.svg */,
-				9D711D6123C63A0B00F01E1A /* 2.svg */,
-				9D48984D23BE4E1C001EC93B /* 1.svg */,
 				9D48983A23BDE25B001EC93B /* LaunchScreen.storyboard */,
 				9D48983D23BDE25C001EC93B /* Info.plist */,
+				9DFF143523C7FB7800A6C980 /* FloodImage.swift */,
+				9DFF143723C7FBAC00A6C980 /* LinkedList.swift */,
 			);
 			path = Amandala;
 			sourceTree = "<group>";
@@ -111,6 +108,9 @@
 		9D48984823BE1F79001EC93B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9DFF143A23C7FC0E00A6C980 /* 1.svg */,
+				9DFF143B23C7FC0F00A6C980 /* 2.svg */,
+				9DFF143923C7FC0E00A6C980 /* 3.svg */,
 				9D48984523BE1C4F001EC93B /* Colors.swift */,
 				9D48984923BE1FB0001EC93B /* Strings.swift */,
 			);
@@ -194,11 +194,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D711D6423C63BDF00F01E1A /* 3.svg in Resources */,
-				9D48984E23BE4E1C001EC93B /* 1.svg in Resources */,
-				9D711D6223C63A0B00F01E1A /* 2.svg in Resources */,
 				9D48983C23BDE25C001EC93B /* LaunchScreen.storyboard in Resources */,
 				9D48983923BDE25B001EC93B /* Assets.xcassets in Resources */,
+				9DFF143C23C7FC0F00A6C980 /* 3.svg in Resources */,
+				9DFF143E23C7FC0F00A6C980 /* 2.svg in Resources */,
+				9DFF143D23C7FC0F00A6C980 /* 1.svg in Resources */,
 				9D48983723BDE25A001EC93B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,14 +252,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DFF143823C7FBAC00A6C980 /* LinkedList.swift in Sources */,
 				9D48983423BDE25A001EC93B /* ViewController.swift in Sources */,
 				9D48984623BE1C4F001EC93B /* Colors.swift in Sources */,
 				9D48984423BE17E4001EC93B /* UIColor+HEX.swift in Sources */,
 				9D48983023BDE25A001EC93B /* AppDelegate.swift in Sources */,
 				9D48984A23BE1FB0001EC93B /* Strings.swift in Sources */,
-				9D67CCAD23BF917D00D3C429 /* FloodImage.swift in Sources */,
+				9DFF143623C7FB7800A6C980 /* FloodImage.swift in Sources */,
 				9D48984C23BE32E9001EC93B /* UIView+CornerRadius.swift in Sources */,
-				9D67CCAC23BF917D00D3C429 /* LinkedList.swift in Sources */,
 				9D48983223BDE25A001EC93B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
