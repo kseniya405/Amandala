@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C9B48BE4B9D3F55C77160EC /* Pods_Amandala.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE524FECFAF42662CBAEA28B /* Pods_Amandala.framework */; };
+		9D020C9A23CC6285005B66E1 /* Pods_Amandala.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE524FECFAF42662CBAEA28B /* Pods_Amandala.framework */; };
+		9D020C9B23CC6285005B66E1 /* Pods_Amandala.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE524FECFAF42662CBAEA28B /* Pods_Amandala.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9D48983023BDE25A001EC93B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48982F23BDE25A001EC93B /* AppDelegate.swift */; };
 		9D48983223BDE25A001EC93B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48983123BDE25A001EC93B /* SceneDelegate.swift */; };
-		9D48983423BDE25A001EC93B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48983323BDE25A001EC93B /* ViewController.swift */; };
+		9D48983423BDE25A001EC93B /* DrawingAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48983323BDE25A001EC93B /* DrawingAreaViewController.swift */; };
 		9D48983723BDE25A001EC93B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D48983523BDE25A001EC93B /* Main.storyboard */; };
 		9D48983923BDE25B001EC93B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D48983823BDE25B001EC93B /* Assets.xcassets */; };
 		9D48983C23BDE25C001EC93B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D48983A23BDE25B001EC93B /* LaunchScreen.storyboard */; };
@@ -18,19 +19,37 @@
 		9D48984623BE1C4F001EC93B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48984523BE1C4F001EC93B /* Colors.swift */; };
 		9D48984A23BE1FB0001EC93B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48984923BE1FB0001EC93B /* Strings.swift */; };
 		9D48984C23BE32E9001EC93B /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48984B23BE32E9001EC93B /* UIView+CornerRadius.swift */; };
-		9D48984E23BE4E1C001EC93B /* 1.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9D48984D23BE4E1C001EC93B /* 1.svg */; };
-		9D67CCAC23BF917D00D3C429 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D67CCAA23BF917C00D3C429 /* LinkedList.swift */; };
-		9D67CCAD23BF917D00D3C429 /* FloodImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D67CCAB23BF917C00D3C429 /* FloodImage.swift */; };
-		9D711D6223C63A0B00F01E1A /* 2.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9D711D6123C63A0B00F01E1A /* 2.svg */; };
-		9D711D6423C63BDF00F01E1A /* 3.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9D711D6323C63BDF00F01E1A /* 3.svg */; };
+		9D715B2B23C8D3FF009BBCD1 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D715B2523C8D3FD009BBCD1 /* OpenCVWrapper.mm */; };
+		9D715B2C23C8D3FF009BBCD1 /* floodFillAlgorithmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D715B2623C8D3FE009BBCD1 /* floodFillAlgorithmHelper.swift */; };
+		9D715B2D23C8D3FF009BBCD1 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D715B2723C8D3FE009BBCD1 /* Define.swift */; };
+		9D715B2E23C8D3FF009BBCD1 /* ImageViewFloodFillAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D715B2823C8D3FE009BBCD1 /* ImageViewFloodFillAlgorithm.swift */; };
+		9D715B3023C8D4E3009BBCD1 /* PaintingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D715B2F23C8D4E3009BBCD1 /* PaintingImageView.swift */; };
+		9D7FF13923CF0F7B00A00367 /* UIViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7FF13823CF0F7B00A00367 /* UIViewCircle.swift */; };
+		9D84A47223CE009B00654ACF /* ChooseColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D84A47023CE009B00654ACF /* ChooseColorCollectionViewCell.swift */; };
+		9D84A47323CE009B00654ACF /* ChooseColorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D84A47123CE009B00654ACF /* ChooseColorCollectionViewCell.xib */; };
+		9D84A47523CE07E000654ACF /* View+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D84A47423CE07E000654ACF /* View+ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9D020C9C23CC6285005B66E1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9D020C9B23CC6285005B66E1 /* Pods_Amandala.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4D7BD7D392793E8830505CED /* Pods-Amandala.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amandala.release.xcconfig"; path = "Target Support Files/Pods-Amandala/Pods-Amandala.release.xcconfig"; sourceTree = "<group>"; };
 		9D48982C23BDE25A001EC93B /* Amandala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amandala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D48982F23BDE25A001EC93B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D48983123BDE25A001EC93B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9D48983323BDE25A001EC93B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9D48983323BDE25A001EC93B /* DrawingAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingAreaViewController.swift; sourceTree = "<group>"; };
 		9D48983623BDE25A001EC93B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D48983823BDE25B001EC93B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D48983B23BDE25B001EC93B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,11 +58,17 @@
 		9D48984523BE1C4F001EC93B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		9D48984923BE1FB0001EC93B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		9D48984B23BE32E9001EC93B /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
-		9D48984D23BE4E1C001EC93B /* 1.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 1.svg; path = "../../../../../Downloads/Source files/Mandala drawings sorted/Easy/1.svg"; sourceTree = "<group>"; };
-		9D67CCAA23BF917C00D3C429 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkedList.swift; path = ../../../../FloodFill/FloodFillAlgoritm/LinkedList.swift; sourceTree = "<group>"; };
-		9D67CCAB23BF917C00D3C429 /* FloodImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloodImage.swift; path = ../../../../FloodFill/FloodFillAlgoritm/FloodImage.swift; sourceTree = "<group>"; };
-		9D711D6123C63A0B00F01E1A /* 2.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 2.svg; path = "../../../../../Downloads/Source files/Mandala drawings sorted/Animals Symbols/2.svg"; sourceTree = "<group>"; };
-		9D711D6323C63BDF00F01E1A /* 3.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = 3.svg; path = "../../../../../Downloads/Source files/Mandala drawings sorted/Medium/3.svg"; sourceTree = "<group>"; };
+		9D715B2423C8D3FC009BBCD1 /* Amandala-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Amandala-Bridging-Header.h"; sourceTree = "<group>"; };
+		9D715B2523C8D3FD009BBCD1 /* OpenCVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
+		9D715B2623C8D3FE009BBCD1 /* floodFillAlgorithmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = floodFillAlgorithmHelper.swift; sourceTree = "<group>"; };
+		9D715B2723C8D3FE009BBCD1 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		9D715B2823C8D3FE009BBCD1 /* ImageViewFloodFillAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewFloodFillAlgorithm.swift; sourceTree = "<group>"; };
+		9D715B2923C8D3FF009BBCD1 /* OpenCVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
+		9D715B2F23C8D4E3009BBCD1 /* PaintingImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingImageView.swift; sourceTree = "<group>"; };
+		9D7FF13823CF0F7B00A00367 /* UIViewCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewCircle.swift; sourceTree = "<group>"; };
+		9D84A47023CE009B00654ACF /* ChooseColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorCollectionViewCell.swift; sourceTree = "<group>"; };
+		9D84A47123CE009B00654ACF /* ChooseColorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseColorCollectionViewCell.xib; sourceTree = "<group>"; };
+		9D84A47423CE07E000654ACF /* View+ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ActivityIndicator.swift"; sourceTree = "<group>"; };
 		BE524FECFAF42662CBAEA28B /* Pods_Amandala.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amandala.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEC8A505C6E1FE3A1E736BE1 /* Pods-Amandala.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amandala.debug.xcconfig"; path = "Target Support Files/Pods-Amandala/Pods-Amandala.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C9B48BE4B9D3F55C77160EC /* Pods_Amandala.framework in Frameworks */,
+				9D020C9A23CC6285005B66E1 /* Pods_Amandala.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,16 +108,15 @@
 			children = (
 				9D48982F23BDE25A001EC93B /* AppDelegate.swift */,
 				9D48983123BDE25A001EC93B /* SceneDelegate.swift */,
-				9D48983323BDE25A001EC93B /* ViewController.swift */,
+				9D48983323BDE25A001EC93B /* DrawingAreaViewController.swift */,
+				9D84A47023CE009B00654ACF /* ChooseColorCollectionViewCell.swift */,
+				9D84A47123CE009B00654ACF /* ChooseColorCollectionViewCell.xib */,
 				9D48983523BDE25A001EC93B /* Main.storyboard */,
-				9D67CCAB23BF917C00D3C429 /* FloodImage.swift */,
-				9D67CCAA23BF917C00D3C429 /* LinkedList.swift */,
+				9D715B2F23C8D4E3009BBCD1 /* PaintingImageView.swift */,
 				9D48984723BE1F6C001EC93B /* Utilits */,
 				9D48984823BE1F79001EC93B /* Resources */,
+				9D715B2323C8D3B2009BBCD1 /* support */,
 				9D48983823BDE25B001EC93B /* Assets.xcassets */,
-				9D711D6323C63BDF00F01E1A /* 3.svg */,
-				9D711D6123C63A0B00F01E1A /* 2.svg */,
-				9D48984D23BE4E1C001EC93B /* 1.svg */,
 				9D48983A23BDE25B001EC93B /* LaunchScreen.storyboard */,
 				9D48983D23BDE25C001EC93B /* Info.plist */,
 			);
@@ -104,6 +128,8 @@
 			children = (
 				9D48984323BE17E4001EC93B /* UIColor+HEX.swift */,
 				9D48984B23BE32E9001EC93B /* UIView+CornerRadius.swift */,
+				9D84A47423CE07E000654ACF /* View+ActivityIndicator.swift */,
+				9D7FF13823CF0F7B00A00367 /* UIViewCircle.swift */,
 			);
 			path = Utilits;
 			sourceTree = "<group>";
@@ -115,6 +141,19 @@
 				9D48984923BE1FB0001EC93B /* Strings.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		9D715B2323C8D3B2009BBCD1 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				9D715B2723C8D3FE009BBCD1 /* Define.swift */,
+				9D715B2623C8D3FE009BBCD1 /* floodFillAlgorithmHelper.swift */,
+				9D715B2823C8D3FE009BBCD1 /* ImageViewFloodFillAlgorithm.swift */,
+				9D715B2923C8D3FF009BBCD1 /* OpenCVWrapper.h */,
+				9D715B2523C8D3FD009BBCD1 /* OpenCVWrapper.mm */,
+				9D715B2423C8D3FC009BBCD1 /* Amandala-Bridging-Header.h */,
+			);
+			path = support;
 			sourceTree = "<group>";
 		};
 		A8C8BDB5F4353DE32B597679 /* Pods */ = {
@@ -146,6 +185,7 @@
 				9D48982923BDE25A001EC93B /* Frameworks */,
 				9D48982A23BDE25A001EC93B /* Resources */,
 				1C2F3CEACCBDA0C842E2053E /* [CP] Embed Pods Frameworks */,
+				9D020C9C23CC6285005B66E1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -168,6 +208,7 @@
 				TargetAttributes = {
 					9D48982B23BDE25A001EC93B = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -194,11 +235,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D711D6423C63BDF00F01E1A /* 3.svg in Resources */,
-				9D48984E23BE4E1C001EC93B /* 1.svg in Resources */,
-				9D711D6223C63A0B00F01E1A /* 2.svg in Resources */,
 				9D48983C23BDE25C001EC93B /* LaunchScreen.storyboard in Resources */,
 				9D48983923BDE25B001EC93B /* Assets.xcassets in Resources */,
+				9D84A47323CE009B00654ACF /* ChooseColorCollectionViewCell.xib in Resources */,
 				9D48983723BDE25A001EC93B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,14 +291,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D48983423BDE25A001EC93B /* ViewController.swift in Sources */,
+				9D48983423BDE25A001EC93B /* DrawingAreaViewController.swift in Sources */,
+				9D715B2B23C8D3FF009BBCD1 /* OpenCVWrapper.mm in Sources */,
 				9D48984623BE1C4F001EC93B /* Colors.swift in Sources */,
 				9D48984423BE17E4001EC93B /* UIColor+HEX.swift in Sources */,
+				9D84A47223CE009B00654ACF /* ChooseColorCollectionViewCell.swift in Sources */,
+				9D715B3023C8D4E3009BBCD1 /* PaintingImageView.swift in Sources */,
 				9D48983023BDE25A001EC93B /* AppDelegate.swift in Sources */,
+				9D7FF13923CF0F7B00A00367 /* UIViewCircle.swift in Sources */,
+				9D84A47523CE07E000654ACF /* View+ActivityIndicator.swift in Sources */,
 				9D48984A23BE1FB0001EC93B /* Strings.swift in Sources */,
-				9D67CCAD23BF917D00D3C429 /* FloodImage.swift in Sources */,
+				9D715B2C23C8D3FF009BBCD1 /* floodFillAlgorithmHelper.swift in Sources */,
 				9D48984C23BE32E9001EC93B /* UIView+CornerRadius.swift in Sources */,
-				9D67CCAC23BF917D00D3C429 /* LinkedList.swift in Sources */,
+				9D715B2E23C8D3FF009BBCD1 /* ImageViewFloodFillAlgorithm.swift in Sources */,
+				9D715B2D23C8D3FF009BBCD1 /* Define.swift in Sources */,
 				9D48983223BDE25A001EC93B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,7 +381,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -390,7 +435,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -405,6 +450,7 @@
 			baseConfigurationReference = DEC8A505C6E1FE3A1E736BE1 /* Pods-Amandala.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7XSVATSQ6N;
 				INFOPLIST_FILE = Amandala/Info.plist;
@@ -414,6 +460,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kinect.pro.Amandala;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Amandala/support/Amandala-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -424,6 +472,7 @@
 			baseConfigurationReference = 4D7BD7D392793E8830505CED /* Pods-Amandala.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7XSVATSQ6N;
 				INFOPLIST_FILE = Amandala/Info.plist;
@@ -433,6 +482,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kinect.pro.Amandala;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Amandala/support/Amandala-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

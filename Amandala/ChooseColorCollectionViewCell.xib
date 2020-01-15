@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ChooseColorCollectionViewCell" reuseIdentifier="ChooseColorCollectionViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="gTV-IL-0wX" customClass="ChooseColorCollectionViewCell" customModule="Amandala" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ag4-Pu-Cgc" customClass="UIViewCircle" customModule="Amandala" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="CFu-Wm-iA9">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="CFu-Wm-iA9" secondAttribute="trailing" id="3Ye-xA-4fx"/>
+                            <constraint firstAttribute="width" secondItem="Ag4-Pu-Cgc" secondAttribute="height" multiplier="1:1" id="GwL-l2-JRd"/>
+                            <constraint firstItem="CFu-Wm-iA9" firstAttribute="top" secondItem="Ag4-Pu-Cgc" secondAttribute="top" id="eB8-Sc-CBl"/>
+                            <constraint firstAttribute="bottom" secondItem="CFu-Wm-iA9" secondAttribute="bottom" id="pQ6-Ar-h4h"/>
+                            <constraint firstItem="CFu-Wm-iA9" firstAttribute="leading" secondItem="Ag4-Pu-Cgc" secondAttribute="leading" id="rsq-uj-Ym7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7af-KN-TbB"/>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Ag4-Pu-Cgc" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="HRw-fn-995"/>
+                <constraint firstItem="Ag4-Pu-Cgc" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="K9G-rW-sLa"/>
+                <constraint firstItem="Ag4-Pu-Cgc" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="VxR-kk-1lR"/>
+                <constraint firstAttribute="top" secondItem="Ag4-Pu-Cgc" secondAttribute="top" id="c67-5O-1Mb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ThU-DS-HiZ"/>
+            <size key="customSize" width="322" height="425"/>
+            <connections>
+                <outlet property="backgroundColorView" destination="Ag4-Pu-Cgc" id="svw-Uw-cg4"/>
+                <outlet property="imageView" destination="CFu-Wm-iA9" id="nte-Ao-mDj"/>
+            </connections>
+            <point key="canvasLocation" x="327.536231884058" y="278.57142857142856"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="add" width="96" height="96"/>
+    </resources>
+</document>
