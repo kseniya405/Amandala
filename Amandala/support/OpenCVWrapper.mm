@@ -17,6 +17,8 @@ using namespace std;
 
 @implementation OpenCVWrapper : NSObject
     + (UIImage *)floodFill:(UIImage*)inputImage point:(CGPoint)point replacementColor:(UIColor*)replacementColor {
+        
+        
         cv::Mat cvImage;
         UIImageToMat(inputImage, cvImage);
         if (cvImage.channels() == 4) {
@@ -32,14 +34,24 @@ using namespace std;
             default:
                 break;
         }
-        assert(cvImage.channels() == 3);
+//        assert(cvImage.channels() == 3);
         CGFloat r = 0;
         CGFloat g = 0;
         CGFloat b = 0;
         [replacementColor getRed:&r green:&g blue:&b alpha:nil];
 //        assert(r != 0);
         
-        floodFill(cvImage, cv::Point(point.x, point.y), Scalar(UInt8(r * 255), UInt8(g * 255), UInt8(b * 255)), 0, Scalar(0, 0, 0),Scalar(0, 0, 0), 8);
+        int loDiff = (r < 0 && g < 0 && b < 0) ? 0 : 20;
+        
+        floodFill(cvImage, cv::Point(point.x, point.y), Scalar(UInt8(r * 255), UInt8(g * 255), UInt8(b * 255)), 0,  Scalar(UInt8(loDiff), UInt8(loDiff), UInt8(loDiff)), Scalar(0, 0, 0), 8);
+//        medianBlur(cvImage, cvImage, 3);
+        return MatToUIImage(cvImage);
+    }
+
+    + (UIImage *)medianBlur:(UIImage*)inputImage {
+        cv::Mat cvImage;
+        UIImageToMat(inputImage, cvImage);
+        medianBlur(cvImage, cvImage, 3);
         return MatToUIImage(cvImage);
     }
 

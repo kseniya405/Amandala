@@ -20,14 +20,13 @@ struct Colors {
     
     
     //default palette colors
-    static let burgundy = UIColor(hexString: "181c7b")
-    static let red = UIColor.red
-    static let pink =  UIColor(hexString: "f2226c")
-    static let orange = UIColor.orange
-    static let yellow = UIColor.yellow
-    static let lightGreen = UIColor(hexString: "59de36")
-    static let darkGreen = UIColor(hexString: "00702e")
-    static let blue = UIColor.blue
-    static let purple = UIColor.purple
-
+    static let brown = UIColor(hexString: "8B1C1C")
+    static let red = UIColor(hexString: "E00F3B")
+    static let pink =  UIColor(hexString: "EC2C79")
+    static let orange = UIColor(hexString: "FD7815")
+    static let yellow = UIColor(hexString: "FFDA2A")
+    static let lightGreen = UIColor(hexString: "6AE900")
+    static let darkGreen = UIColor(hexString: "00822A")
+    static let blue = UIColor(hexString: "2F55FE")
+    static let darkBlue = UIColor(hexString: "0F2CAF")
 }

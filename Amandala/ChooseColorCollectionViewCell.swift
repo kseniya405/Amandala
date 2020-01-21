@@ -17,21 +17,40 @@ class ChooseColorCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        print(self.bounds)
     }
     
     func setParameters(color: UIColor? = nil, cellIsSelected: Bool) {
         if color != nil {
             backgroundColorView.backgroundColor = color
             imageView.isHidden = true
+            if cellIsSelected {
+//                backgroundColorView.
+            }
         } else {
             backgroundColorView.backgroundColor = Colors.lightGray
             imageView.isHidden = false
         }
+        backgroundColorView.layer.borderWidth = cellIsSelected ? 3:0
+        backgroundColorView.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    func makeBorder(makeBoard: Bool) {
+        backgroundColorView.layer.borderWidth = makeBoard ? 3:0
+        backgroundColorView.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    func clearCell() {
+        imageView.image = nil
+        backgroundColorView.backgroundColor = .clear
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+        backgroundColorView.backgroundColor = .clear
     }
 
 }

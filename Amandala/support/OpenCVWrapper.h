@@ -13,4 +13,5 @@
 
 @interface OpenCVWrapper : NSObject
 + (UIImage *)floodFill:(UIImage*)inputImage point:(CGPoint)point replacementColor:(UIColor*)replacementColor;
++ (UIImage *)medianBlur:(UIImage*)inputImage ;
 @end

@@ -11,7 +11,7 @@ import UIKit
 class RGBComponent {
     let red, green, blue: UInt8
     
-    init(red:UInt8, green:UInt8, blue:UInt8){
+    init(red: UInt8, green: UInt8, blue: UInt8){
         self.red = red
         self.green = green
         self.blue = blue

@@ -8,7 +8,11 @@ target 'Amandala' do
 #  pod 'PaintBucket'
   pod 'SVGKit'
   pod 'OpenCV'
-  pod 'ImageMagick', '6.8.8-9'
+#  pod 'ImageMagick', '6.8.8-9'
+  pod 'ChromaColorPicker'
+ pod 'SwiftHUEColorPicker'
+  
+  
   # Pods for Amandala
 
 
