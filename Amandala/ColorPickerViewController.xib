@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ColorPickerViewController" customModule="Amandala" customModuleProvider="target">
+            <connections>
+                <outlet property="colorPickerView" destination="G0m-7J-4Lw" id="4QS-7U-nfP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" restorationIdentifier="ColorPickerViewController" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0m-7J-4Lw" userLabel="ColorPickerView">
+                    <rect key="frame" x="0.0" y="5" width="414" height="896"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="G0m-7J-4Lw" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="MVJ-db-6mo"/>
+                <constraint firstItem="G0m-7J-4Lw" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="RkU-jm-1ee"/>
+                <constraint firstItem="G0m-7J-4Lw" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="aWM-vG-dD6"/>
+                <constraint firstItem="G0m-7J-4Lw" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="wKX-SK-w6r"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="motionIdentifier" value="ColorPickerViewController"/>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="132" y="124"/>
+        </view>
+    </objects>
+</document>

@@ -45,6 +45,11 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ThU-DS-HiZ"/>
             <size key="customSize" width="322" height="425"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="dividerThickness">
+                    <real key="value" value="0.0"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="backgroundColorView" destination="Ag4-Pu-Cgc" id="svw-Uw-cg4"/>
                 <outlet property="imageView" destination="CFu-Wm-iA9" id="nte-Ao-mDj"/>
@@ -53,6 +58,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="add" width="96" height="96"/>
+        <image name="add" width="24" height="24"/>
     </resources>
 </document>

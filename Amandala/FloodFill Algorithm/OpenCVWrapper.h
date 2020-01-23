@@ -1,9 +1,9 @@
 //
 //  OpenCVWrapper.h
-//  MyRecolor
+//  Amandala
 //
-//  Created by Linsw on 16/4/27.
-//  Copyright © 2016年 Linsw. All rights reserved.
+//  Created by Ксения Шкуренко on 09.11.2017.
+//  Copyright © 2017 Kseniia Shkurenko. All rights reserved.
 //
 
 
@@ -13,5 +13,5 @@
 
 @interface OpenCVWrapper : NSObject
 + (UIImage *)floodFill:(UIImage*)inputImage point:(CGPoint)point replacementColor:(UIColor*)replacementColor;
-+ (UIImage *)medianBlur:(UIImage*)inputImage ;
+
 @end

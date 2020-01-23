@@ -7,6 +7,7 @@
 //
 
 import CoreGraphics
+import UIKit
 
 struct PointNode {
     var pointX: Int?
@@ -16,6 +17,12 @@ struct PointNode {
     var getPoints: (Int, Int) {
         return (pointX!, pointY!)
     }
+}
+
+struct MoveNode {
+    var point: CGPoint?
+    var previosColor: UIColor?
+    var nextColor: UIColor?
 }
 
 public final class LinkedList<T> {

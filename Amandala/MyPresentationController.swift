@@ -1,3 +1,12 @@
+//
+//  MyPresentationController.swift
+//  Amandala
+//
+//  Created by Денис Марков on 21.01.2020.
+//  Copyright © 2020 Kseniia Shkurenko. All rights reserved.
+//
+
+
 import UIKit
 import QuartzCore
 
@@ -78,6 +87,7 @@ class MyPresentationController : UIPresentationController {
         v.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin, .flexibleLeftMargin, .flexibleRightMargin]
         v.translatesAutoresizingMaskIntoConstraints = true
     }
+    
 }
 
 extension CAVTransitioner {

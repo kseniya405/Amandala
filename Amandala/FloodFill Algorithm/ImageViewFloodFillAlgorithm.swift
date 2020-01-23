@@ -10,11 +10,31 @@ import Foundation
 import UIKit
 
 extension PaintingImageView {
+
     
+    func undo() {
+        if let prevStep = steps.removeLast(), let point = prevStep.point, let color = prevStep.previosColor, let image = self.image {
+            self.image = OpenCVWrapper.floodFill(image, point: point, replacementColor: color)
+            self.tempSteps.append(prevStep)
+        }
+    }
     
-    func buckerFill(_ touchPoint:CGPoint, replacementColor: UIColor) {
+    func redo() {
+        if let nextStep = tempSteps.removeLast(), let point = nextStep.point, let color = nextStep.nextColor, let image = self.image {
+            self.image = OpenCVWrapper.floodFill(image, point: point, replacementColor: color)
+            self.steps.append(nextStep)
+        }
+    }
+
+    
+    func buckerFill(_ touchPoint:CGPoint, replacementColor: UIColor, prevColor: UIColor?) {
         
-        guard let image = self.imageNotCompression, let cgImage = image.cgImage else {
+        if tempSteps.count > 0 {
+             tempSteps = LinkedList<MoveNode>()
+        }
+        
+        
+        guard let image = self.image, let cgImage = image.cgImage else {
             print("image no found")
             return
         }
@@ -28,20 +48,29 @@ extension PaintingImageView {
         bitmapContext.draw(cgImage, in: CGRect(x: 0, y: 0, width: cgImage.width, height: cgImage.height))
         guard let data = bitmapContext.data?.assumingMemoryBound(to: UInt8.self) else { return }
         var targetColorRGBComponent  = rgbComponentsAtPoint(touchPointInImage, inData: data, image: image)
+        
         if targetColorRGBComponent.equalToComponent(RGBComponent(red: 0, green: 0, blue: 0)) && self.getBorder().count > 0 {
-            touchPointInImage = searchSpacePixel(touchPointInImage: touchPointInImage, image: image)
+            touchPointInImage = searchSpacePixel(touchPointInImage: touchPointInImage, image: cgImage)
             targetColorRGBComponent  = rgbComponentsAtPoint(touchPointInImage, inData: data, image: image)
             print("touchPointInImage ", touchPointInImage, "targetColorRGBComponent ", targetColorRGBComponent.red , targetColorRGBComponent.green, targetColorRGBComponent.blue)
         }
-        guard !targetColorRGBComponent.equalToComponent(RGBComponent(red: UInt8(0), green: UInt8(0), blue: UInt8(0))) &&
-        !targetColorRGBComponent.equalToComponent(RGBComponent(red: UInt8(180), green: UInt8(180), blue: UInt8(180))) else { return }
-        self.imageNotCompression = OpenCVWrapper.floodFill(image, point: touchPointInImage, replacementColor: replacementColor)
-        self.image = OpenCVWrapper.medianBlur(imageNotCompression)
+        guard !targetColorRGBComponent.equalToComponent(RGBComponent(red: UInt8(0), green: UInt8(0), blue: UInt8(0))) else { return }
+
+        let r = CGFloat(targetColorRGBComponent.red) / CGFloat(255.0)
+        let g = CGFloat(targetColorRGBComponent.green) / CGFloat(255.0)
+        let b = CGFloat(targetColorRGBComponent.blue) / CGFloat(255.0)
+        let a = 1
+        
+        self.steps.append(MoveNode(point: touchPointInImage,
+                                   previosColor: UIColor(red: r, green: g, blue: b, alpha: CGFloat(a)),
+                                   nextColor: replacementColor))
+
+        self.image = OpenCVWrapper.floodFill(image, point: touchPointInImage, replacementColor: replacementColor)
     }
     
     
     fileprivate func createARGBBitmapContext() -> CGContext?{
-        guard let pixelsWide = self.image?.cgImage?.width, let pixelsHigh = self.image?.cgImage?.height, let colorSpace = CGColorSpace(name: CGColorSpace.genericRGBLinear) else {
+        guard let pixelsWide = self.image?.cgImage?.width, let pixelsHigh = self.image?.cgImage?.height, let colorSpace = CGColorSpace(name: CGColorSpace.sRGB) else {
             print("Error allocating color space")
             return nil
         }
@@ -52,6 +81,7 @@ extension PaintingImageView {
             print("Context not create")
             return nil
         }
+        
         return context
     }
     
@@ -75,10 +105,10 @@ extension PaintingImageView {
         return CGPoint(x: x, y: y)
     }
     
-    fileprivate func searchSpacePixel( touchPointInImage: CGPoint, image: UIImage) -> CGPoint {
+    fileprivate func searchSpacePixel( touchPointInImage: CGPoint, image: CGImage) -> CGPoint {
         
-        let width = Int(image.cgImage!.width)
-        let height = Int(image.cgImage!.height)
+        let width = Int(image.width)
+        let height = Int(image.height)
         let point = LinkedList<PointNode>()
         let x = Int(touchPointInImage.x)
         let y = Int(touchPointInImage.y)
@@ -91,7 +121,7 @@ extension PaintingImageView {
             
             if let currentX = currentPoint.pointX, let currentY = currentPoint.pointY, let currentIndex: Int = currentPoint.index {
                 
-                if !boolData[y][x] {
+                if !boolData[currentY][currentX] {
                     return CGPoint(x: currentX, y: currentY)
                 }
                 
@@ -101,30 +131,33 @@ extension PaintingImageView {
                  let bottomIndex = currentIndex + width
                 
                  if currentX > 1 {
-                    if !boolData[y][x-1] {
+                    if !boolData[currentY][currentX - 1] {
                         return CGPoint(x: currentX - 1, y: currentY)
                     }
                      point.append(PointNode(pointX: currentX - 1, pointY: currentY, index: leftIndex))
                  }
                  if currentX < width - 1 {
-                    if !boolData[y][x+1] {
+                    if !boolData[currentY][currentX + 1] {
                         return CGPoint(x: currentX + 1, y: currentY)
                     }
                      point.append(PointNode(pointX: currentX + 1, pointY: currentY, index: rightIndex))
                  }
                  if currentY > 1 {
-                    if !boolData[y-1][x] {
+                    if !boolData[currentY - 1][currentX] {
                         return CGPoint(x: currentX, y: currentY - 1)
                     }
                      point.append(PointNode(pointX: currentX, pointY: currentY - 1, index: topIndex))
                  }
                  if currentY < height - 1 {
-                    if !boolData[y+1][x] {
+                    if !boolData[currentY + 1][currentX] {
                         return CGPoint(x: currentX, y: currentY + 1)
                     }
                      point.append(PointNode(pointX: currentX, pointY: currentY + 1, index: bottomIndex))
                  }
+                
              }
+            
+            print(point.count)
         }
         return touchPointInImage
     }

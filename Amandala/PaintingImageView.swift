@@ -11,25 +11,26 @@ import UIKit
 class PaintingImageView: UIImageView {
     
     fileprivate var borderData = [[Bool]]()
-    public var imageNotCompression: UIImage?
-
+    
+    let steps = LinkedList<MoveNode>()
+    var tempSteps = LinkedList<MoveNode>()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-//        DispatchQueue.main.async {
-//            self.setBorder()
-//        }
-//                configureLayer()
-//                alpha = 0
-//                configureBorderLayer()
+
+
+        //                configureLayer()
+        //                alpha = 0
+        //                configureBorderLayer()
     }
     
     
     fileprivate func configureLayer(){
         layer.borderColor = UIColor.gray.cgColor
         layer.borderWidth = 10
-//        layer.cornerRadius = 20
+        //        layer.cornerRadius = 20
     }
+    
     func configureBorderLayer(){
         let borderLayer = CALayer()
         borderLayer.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
@@ -41,17 +42,23 @@ class PaintingImageView: UIImageView {
     func getBorder() -> [[Bool]] {
         return borderData
     }
-
+    
     func setBorder()  {
-        
-        guard let image = self.image, let cgImage = image.cgImage else {
-            print("OOOPS, cgImage not correct")
+        guard let image = self.image else {
+            print("OOOPS, image not correct")
             return
         }
-
+        
+        let queue = DispatchQueue(label: "myQueue", qos: .userInteractive)
+        queue.async {
+        guard let cgImage = image.cgImage else {
+            print("OOOPS, cgimage not correct")
+            return
+        }
+        
         let dataSize = cgImage.width * cgImage.height * 4
         let pixelData = malloc(dataSize)
-
+        
         guard let colorSpace = CGColorSpace(name: CGColorSpace.genericRGBLinear) else {
             print("Error allocating color space")
             return
@@ -66,35 +73,43 @@ class PaintingImageView: UIImageView {
         
         
         var boolData = [[Bool]]()
-//        var byteIndex: Int = 0
-//        var isBorder = false
-//        for index in 0...dataSize/4-1 {
-//            byteIndex = index * 4
-////            let red = UInt(pixelData[byteIndex])
-////            let green = UInt(pixelData[byteIndex + 1])
-////            let blue = UInt(pixelData[byteIndex + 2])
-////            isBorder = red + green + blue == 0
-////            boolData.append(isBorder)
-//        }
+        //        var byteIndex: Int = 0
+        //        var isBorder = false
+        //        for index in 0...dataSize/4-1 {
+        //            byteIndex = index * 4
+        ////            let red = UInt(pixelData[byteIndex])
+        ////            let green = UInt(pixelData[byteIndex + 1])
+        ////            let blue = UInt(pixelData[byteIndex + 2])
+        ////            isBorder = red + green + blue == 0
+        ////            boolData.append(isBorder)
+        //        }
         for y in 0 ..< cgImage.height {
             var boolDataRow = [Bool]()
             for x in 0 ..< cgImage.width {
-                boolDataRow.append(isBorderPixel(x: x, y: y, inData: data))
+                boolDataRow.append(self.isBorderPixel(x: x, y: y, inData: data))
+//                print(isBorderPixel(x: x, y: y, inData: data) {
+//                    print(true)
+//                }
             }
             boolData.append(boolDataRow)
         }       
         
         print(boolData.count)
         self.borderData = boolData
+            UIGraphicsEndImageContext()
+        }
     }
-
+    
     fileprivate func isBorderPixel(x: Int, y: Int ,inData data:UnsafeMutablePointer<UInt8>) -> Bool {
         guard let width = self.image?.size.width else {
             print("Error rgbComponentsAtPoint")
             return false
         }
-        let pixelInfo = (Int(width) * y + x) * 4
-        return data[pixelInfo+1] == UInt8(0) && data[pixelInfo+2] == UInt8(0) && data[pixelInfo+3] == UInt8(0)
+        let pixelInfo = (Int(width) * y + x) * 3
+        let red = UInt(data[pixelInfo])
+        let green = UInt(data[pixelInfo + 1])
+        let blue = UInt(data[pixelInfo + 2])
+        return  red + green + blue == 0
     }
     
 }

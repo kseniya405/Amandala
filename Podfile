@@ -10,8 +10,7 @@ target 'Amandala' do
   pod 'OpenCV'
 #  pod 'ImageMagick', '6.8.8-9'
   pod 'ChromaColorPicker'
- pod 'SwiftHUEColorPicker'
-  
+  pod 'Material'
   
   # Pods for Amandala
 

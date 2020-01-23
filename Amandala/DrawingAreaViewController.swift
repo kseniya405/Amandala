@@ -9,7 +9,6 @@
 import UIKit
 import SVGKit
 import ChromaColorPicker
-import SwiftHUEColorPicker
 
 fileprivate let identifierCollectionViewCell = "ChooseColorCollectionViewCell"
 fileprivate let pngImageName = "15-2500"
@@ -27,6 +26,25 @@ class DrawingAreaViewController: UIViewController {
             backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
         }
     }
+    
+    @IBOutlet weak var undoButton: UIButton! {
+        didSet {
+            undoButton.addTarget(self, action: #selector(undoDidTap), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var redoButton: UIButton! {
+           didSet {
+               redoButton.addTarget(self, action: #selector(redoDidTap), for: .touchUpInside)
+           }
+       }
+    
+    @IBOutlet weak var saveButton: UIButton! {
+        didSet {
+//            saveButton.addTarget(self, action: #selector(saveDidTap), for: .touchUpInside)
+        }
+    }
+    
     
     @IBOutlet weak var paletteCollectionView: UICollectionView!
     
@@ -51,23 +69,15 @@ class DrawingAreaViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var saturationView: UIView!
+    @IBOutlet weak var saturationView: SaturationPicker!
     
-    @IBOutlet weak var colorPickerView: ColorPickerView! {
-        didSet {
-            colorPickerView.neatColorPicker.delegate = self
-        }
-    }
-    let saturationPicker = SwiftHUEColorPicker()
 
     
     let defaultColors = [Colors.brown, Colors.red, Colors.pink, Colors.orange, Colors.yellow, Colors.lightGreen, Colors.darkGreen, Colors.blue, Colors.darkBlue]
+    var customColors = [UIColor]()
     
-    var replacementColor: UIColor = Colors.brown {
-        didSet {
-            saturationPicker.currentColor = replacementColor
-        }
-    }
+    var replacementColor: UIColor = Colors.brown
+    var prevColor: UIColor?
     
     enum TypeButton: Int {
         case fill = 0
@@ -81,21 +91,17 @@ class DrawingAreaViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         topBarView.round(corners: [.bottomLeft, .bottomRight], radius: 50)
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        colorPickerView.addSubview(colorPickerView.neatColorPicker)
-        self.colorPickerView.slideOut(from: .up)
         
-        saturationPicker.direction = .vertical
-        saturationPicker.type = .saturation
-        saturationView.addSubview(saturationPicker)
-        
+        saturationView.currentColor = Colors.brown
+        saturationView?.delegate = self
+
         imageScrollView.delegate = self
         imageScrollView.minimumZoomScale = 1.0
-        imageScrollView.maximumZoomScale = 50
+        imageScrollView.maximumZoomScale = 10
         
         selectedCell = IndexPath(item: 0, section: 0)
         paletteCollectionView.delegate = self
@@ -104,6 +110,7 @@ class DrawingAreaViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture(_:)))
         mandalaImageView.addGestureRecognizer(tap)
+        mandalaImageView.image = UIImage(named: pngImageName)
         mandalaImageView.isUserInteractionEnabled = true
     }
     
@@ -112,36 +119,46 @@ class DrawingAreaViewController: UIViewController {
     }
     
     @objc func fillButtonDidTap() {
-        selectedCell = IndexPath(item: 0, section: 0)
+        if selectedCell == nil {
+            selectedCell = IndexPath(item: 0, section: 0)
+        }
         typeButtonTap = TypeButton.fill.rawValue
-        collectionView(self.paletteCollectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+        collectionView(self.paletteCollectionView, didSelectItemAt: selectedCell!)
         changeImageOfButtons()
     }
     
     @objc func earaserButtonDidTap() {
         typeButtonTap = TypeButton.eraser.rawValue
+        if let deselectedCell = selectedCell {
+             paletteCollectionView.reloadItems(at: [deselectedCell])
+        }
         selectedCell = nil
-        paletteCollectionView.reloadData()
         replacementColor = .white
         changeImageOfButtons()
     }
     
     @objc func paletteButtonDidTap() {
+        let colorPicker = ColorPickerViewController(nibName: "ColorPickerViewController", bundle: nil)
+        colorPicker.delegate = self
+        self.present(colorPicker, animated: true, completion: nil)
+        
         typeButtonTap = TypeButton.palette.rawValue
-        colorPickerView.slideOut(from: .up)
-
-
         changeImageOfButtons()
-        //TO DO : do colorPicker
     }
-    
-    
     
     @objc func tapGesture(_ gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: mandalaImageView)
-        mandalaImageView.buckerFill(point, replacementColor: replacementColor)
+        mandalaImageView.buckerFill(point, replacementColor: replacementColor, prevColor: prevColor)
+        prevColor = replacementColor
     }
     
+    @objc func undoDidTap() {
+        mandalaImageView.undo()
+    }
+    
+    @objc func redoDidTap() {
+        mandalaImageView.redo()
+    }
     
     func changeImageOfButtons() {
         let imageFillName = typeButtonTap == TypeButton.fill.rawValue ? "fillTap" : "fillUntap"
@@ -152,90 +169,6 @@ class DrawingAreaViewController: UIViewController {
         eraserButton.setImage(UIImage(named: imageEraserName), for: .normal)
         colorPalleteButton.setImage(UIImage(named: imagePalleteName), for: .normal)
     }
-    
-    
-    fileprivate func printDate(printString: String) {
-        let date = Date()
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: date)
-        let minute = calendar.component(.minute, from: date)
-        let second = calendar.component(.second, from: date)
-        print(" \(printString) : \(hour):\(minute):\(second)")
-    }
-    
-    
-    /**
-     Processes the image of a mandala: composes a Boolean array with a border, converts a transparent background to white.
-     - Parameter callback: indicates that the image has already loaded
-     @return Image without transparent background
-     */
-    func preparingImage(image: UIImage?, callback: @escaping ((UIImage?) -> (Void)) ) -> UIImage? {
-        printDate(printString: "Start load image")
-        
-        guard let image = image, let cgImage = image.cgImage else {
-            print("OOOPS, cgImage not correct")
-            return nil
-        }
-        
-        let dataSize = cgImage.width * cgImage.height * 4
-        var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
-        
-        let context = CGContext(data: &pixelData,
-                                width: cgImage.width,
-                                height: cgImage.height,
-                                bitsPerComponent: 8,
-                                bytesPerRow: 4 * cgImage.width,
-                                space: CGColorSpaceCreateDeviceRGB(),
-                                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
-        context?.draw(cgImage, in: CGRect(x: 0, y: 0, width: cgImage.width, height: cgImage.height))
-        
-        //        var boolData = [Bool]()
-        //        var isBorder = false
-        //        var copyPixeldata = Data(pixelData)
-        
-        var byteIndex: Int = 0
-        
-        for index in 0...dataSize/4-1 {
-            byteIndex = index * 4
-            //
-            //            let red = UInt(pixelData[byteIndex])
-            //            let green = UInt(pixelData[byteIndex + 1])
-            //            let blue = UInt(pixelData[byteIndex + 2])
-            let alpha = UInt(pixelData[byteIndex + 3])
-            //
-            //            isBorder = alpha != 0 && red + green + blue == 3
-            //            boolData.append(isBorder)
-            if alpha <= UInt8(50) {
-                pixelData[byteIndex] = UInt8(255)
-                pixelData[byteIndex + 1] = UInt8(255)
-                pixelData[byteIndex + 2] = UInt8(255)
-                //                pixelData[byteIndex + 3] = UInt8(255)
-            } else if alpha <= UInt8(160) {
-                pixelData[byteIndex] = UInt8(170)
-                pixelData[byteIndex + 1] = UInt8(170)
-                pixelData[byteIndex + 2] = UInt8(170)
-                //                pixelData[byteIndex + 3] = UInt8(255)
-            }
-            //            if alpha <= 255 {
-            //                pixelData[byteIndex] = UInt8(255 - alpha/20)
-            //                pixelData[byteIndex + 1] = UInt8(255 - alpha/20)
-            //                pixelData[byteIndex + 2] = UInt8(255 - alpha/20)
-            //            }
-            pixelData[byteIndex + 3] = UInt8(255)
-            
-        }
-        
-        //        mandalaImageView.setBorder(boolData: boolData)
-        if let newCGImage = context?.makeImage() {
-            callback(UIImage(cgImage: newCGImage, scale: image.scale, orientation: .up))
-            printDate(printString: "Finish load image")
-            return UIImage(cgImage: newCGImage, scale: image.scale, orientation: .up)
-        } else {
-            callback(image)
-            return image
-        }
-    }
-    
     
 }
 
@@ -266,22 +199,21 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
         
         if indexPath.item < 9 && indexPath.section == 0 {
             cell.setParameters(color: defaultColors[indexPath.item], cellIsSelected: indexPath == selectedCell)
-            print("background ", indexPath )
-        } else if indexPath.section == 1 && indexPath.item != 0 {
-            cell.clearCell()
-            print("clearCell", indexPath)
+        } else if indexPath.section == 1 && indexPath.item < customColors.count {
+            cell.setParameters(color: customColors[indexPath.item], cellIsSelected: indexPath == selectedCell)
+        } else if indexPath.section == 1 && indexPath.item == customColors.count {
+            print("addColor", indexPath)
+            cell.addColor()
         } else {
-            //
-            print("+ ", indexPath)
-            
+            print("clear color", indexPath)
+            cell.clearCell()
         }
-        
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return typeButtonTap == TypeButton.fill.rawValue
+        return indexPath.section == 0 || (indexPath.section == 1 && indexPath.item <= customColors.count)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -295,30 +227,30 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        typeButtonTap = TypeButton.fill.rawValue
+        changeImageOfButtons()
+        
         if let deselectedCell = selectedCell {
             selectedCell = nil
             collectionView.deselectItem(at: deselectedCell, animated: true)
             collectionView.reloadItems(at: [deselectedCell])
         }
-        
-        if indexPath.section == 0 {
-            replacementColor = defaultColors[indexPath.item]
-            selectedCell = indexPath
-            paletteCollectionView.reloadItems(at: [indexPath])
-            //        indexTable = indexPath.row
-            //        heightTable.constant = dataSize[indexTable].sizeType.count == 3 ? 240 : 160
-            //        chooseParcelSize.isHidden = true
-            //
-            //        parcelTypeTableView.beginUpdates()
-            //        parcelTypeTableView.reloadData()
-            //        parcelTypeTableView.endUpdates()
-            //        parcelTypeTableView.isHidden = false
-            //        delegate?.updateConstraintCell()
+        selectedCell = indexPath
+        collectionView.reloadItems(at: [indexPath])
+        if indexPath.section == 0 || (indexPath.section == 1 && indexPath.item < customColors.count) {
             
-        } else {
-            //
+            replacementColor = indexPath.section == 0 ? defaultColors[indexPath.item] : customColors[indexPath.item]
+            saturationView.currentColor = replacementColor
+            selectedCell = indexPath
+            collectionView.reloadItems(at: [indexPath])
+            
+        } else if (indexPath.section == 1 && indexPath.item == customColors.count) {
+            
+            let colorPicker = ColorPickerViewController(nibName: "ColorPickerViewController", bundle: nil)
+            colorPicker.delegate = self
+            self.present(colorPicker, animated: true, completion: nil)
+            
         }
         
     }
@@ -337,12 +269,32 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
     }
 }
 
-extension DrawingAreaViewController: ChromaColorPickerDelegate {
-    
-    func colorPickerDidChooseColor(_ colorPicker: ChromaColorPicker, color: UIColor) {
-        selectedCell = nil
-        paletteCollectionView.reloadData()
+extension DrawingAreaViewController: ColorPickerViewControllerDelegate {
+    func colorPickerDidChooseColor(_ color: UIColor) {
+        if let deselectedCell = selectedCell {
+            selectedCell = nil
+            paletteCollectionView.deselectItem(at: deselectedCell, animated: true)
+            paletteCollectionView.reloadItems(at: [deselectedCell])
+        }
+
         replacementColor = color
-        colorPickerView.slideOut(from: .up)
+        saturationView.currentColor = color
+        if typeButtonTap == TypeButton.fill.rawValue {
+            customColors.append(color)
+            selectedCell = IndexPath(item: 1, section: customColors.count - 1)
+            paletteCollectionView.reloadItems(at: [IndexPath(item: 1, section: customColors.count - 1)])
+
+        }
+        
     }
+
+}
+
+
+extension DrawingAreaViewController: SaturationPickerDelegate {
+    func valuePicked(_ color: UIColor) {
+        replacementColor = color
+    }
+    
+    
 }

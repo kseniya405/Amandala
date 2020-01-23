@@ -29,5 +29,4 @@ struct theme {
     let backgroundColor : UIColor
     let borderLineColor : UIColor
     
-    
 }
