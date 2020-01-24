@@ -2,7 +2,7 @@
 //  ColorPickerViewController.swift
 //  Amandala
 //
-//  Created by Денис Марков on 22.01.2020.
+//  Created by Kseniia Shkurenkoon 22.01.2020.
 //  Copyright © 2020 Kseniia Shkurenko. All rights reserved.
 //
 
@@ -28,7 +28,8 @@ class ColorPickerViewController: UIViewController, ChromaColorPickerDelegate, UI
     override func viewDidLayoutSubviews() {
         neatColorPicker.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
-        self.neatColorPicker.stroke = 15
+        self.neatColorPicker.stroke = 30
+        self.neatColorPicker.padding = 30
         self.neatColorPicker.hexLabel.isHidden = true
         self.neatColorPicker.shadeSlider.isHidden = true
     }

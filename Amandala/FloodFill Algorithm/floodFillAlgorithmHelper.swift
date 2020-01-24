@@ -1,9 +1,9 @@
 //
 //  floodFillAlgorithmHelper.swift
-//  MyRecolor
+//  Amandala
 //
-//  Created by Linsw on 16/4/26.
-//  Copyright © 2016年 Linsw. All rights reserved.
+//  Created by Kseniia Shkurenkoon 16.01.2020.
+//  Copyright © 2020 Kseniia Shkurenko. All rights reserved.
 //
 
 import Foundation

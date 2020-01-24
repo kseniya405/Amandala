@@ -12,10 +12,9 @@ import UIKit
 struct PointNode {
     var pointX: Int?
     var pointY: Int?
-    var index : Int?
     
-    var getPoints: (Int, Int) {
-        return (pointX!, pointY!)
+    var getPoints: (Int?, Int?) {
+        return (pointX, pointY)
     }
 }
 

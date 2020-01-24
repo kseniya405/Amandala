@@ -2,7 +2,7 @@
 //  UIImage + Resized.swift
 //  Amandala
 //
-//  Created by Денис Марков on 10.01.2020.
+//  Created by Kseniia Shkurenkoon 10.01.2020.
 //  Copyright © 2020 Kseniia Shkurenko. All rights reserved.
 //
 

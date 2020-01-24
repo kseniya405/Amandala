@@ -2,7 +2,7 @@
 //  UIView+CornerRadius.swift
 //  Amandala
 //
-//  Created by Денис Марков on 02.01.2020.
+//  Created by Kseniia Shkurenkoon 02.01.2020.
 //  Copyright © 2020 Kseniia Shkurenko. All rights reserved.
 //
 

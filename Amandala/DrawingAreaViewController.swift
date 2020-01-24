@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Amandala
 //
-//  Created by Денис Марков on 02.01.2020.
+//  Created by Kseniia Shkurenkoon 02.01.2020.
 //  Copyright © 2020 Kseniia Shkurenko. All rights reserved.
 //
 
@@ -72,7 +72,6 @@ class DrawingAreaViewController: UIViewController {
     @IBOutlet weak var saturationView: SaturationPicker!
     
 
-    
     let defaultColors = [Colors.brown, Colors.red, Colors.pink, Colors.orange, Colors.yellow, Colors.lightGreen, Colors.darkGreen, Colors.blue, Colors.darkBlue]
     var customColors = [UIColor]()
     
@@ -95,6 +94,7 @@ class DrawingAreaViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
         saturationView.currentColor = Colors.brown
         saturationView?.delegate = self
@@ -112,6 +112,7 @@ class DrawingAreaViewController: UIViewController {
         mandalaImageView.addGestureRecognizer(tap)
         mandalaImageView.image = UIImage(named: pngImageName)
         mandalaImageView.isUserInteractionEnabled = true
+         mandalaImageView.setBorder()
     }
     
     @objc func backButtonDidTap() {
@@ -119,20 +120,25 @@ class DrawingAreaViewController: UIViewController {
     }
     
     @objc func fillButtonDidTap() {
-        if selectedCell == nil {
+        
+        if selectedCell != nil, let deselectedCell = selectedCell {
+            selectedCell = nil
+            paletteCollectionView.deselectItem(at: deselectedCell, animated: true)
+            paletteCollectionView.reloadItems(at: [deselectedCell])
+        } else {
             selectedCell = IndexPath(item: 0, section: 0)
+            paletteCollectionView.reloadItems(at: [IndexPath(item: 0, section: 0)])
         }
         typeButtonTap = TypeButton.fill.rawValue
-        collectionView(self.paletteCollectionView, didSelectItemAt: selectedCell!)
         changeImageOfButtons()
     }
     
     @objc func earaserButtonDidTap() {
         typeButtonTap = TypeButton.eraser.rawValue
         if let deselectedCell = selectedCell {
+            selectedCell = nil
              paletteCollectionView.reloadItems(at: [deselectedCell])
         }
-        selectedCell = nil
         replacementColor = .white
         changeImageOfButtons()
     }

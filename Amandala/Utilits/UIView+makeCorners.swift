@@ -2,7 +2,7 @@
 //  UIView+makeCorners.swift
 //  Amandala
 //
-//  Created by Денис Марков on 22.01.2020.
+//  Created by Kseniia Shkurenkoon 22.01.2020.
 //  Copyright © 2020 Kseniia Shkurenko. All rights reserved.
 //
 

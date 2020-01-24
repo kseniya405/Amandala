@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -102,7 +102,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="wpw-Ur-Qh4" firstAttribute="leading" secondItem="40g-rh-sC3" secondAttribute="leading" id="NYy-I5-j2P"/>
                                     <constraint firstItem="wpw-Ur-Qh4" firstAttribute="top" secondItem="40g-rh-sC3" secondAttribute="top" id="RjO-sY-UJP"/>
@@ -150,21 +150,21 @@
                                         <cells/>
                                     </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QNd-eV-tKW" customClass="SaturationPicker" customModule="Amandala" customModuleProvider="target">
-                                        <rect key="frame" x="333" y="57.000000000000007" width="20" height="103.66666666666669"/>
+                                        <rect key="frame" x="333" y="15" width="20" height="140.66666666666666"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="500" constant="20" id="bCU-iA-6oQ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="QNd-eV-tKW" firstAttribute="centerY" secondItem="FrP-lf-5Wj" secondAttribute="centerY" id="6KJ-Mg-lS3"/>
-                                    <constraint firstItem="QNd-eV-tKW" firstAttribute="height" secondItem="FrP-lf-5Wj" secondAttribute="height" id="7Gt-Ny-XHV"/>
                                     <constraint firstItem="FrP-lf-5Wj" firstAttribute="centerX" secondItem="lOF-c4-Q3d" secondAttribute="centerX" id="9rO-6c-rPI"/>
                                     <constraint firstItem="e87-gd-AwN" firstAttribute="centerX" secondItem="lOF-c4-Q3d" secondAttribute="centerX" id="EJ2-Yp-1u3"/>
                                     <constraint firstItem="FrP-lf-5Wj" firstAttribute="width" secondItem="lOF-c4-Q3d" secondAttribute="width" multiplier="0.75" id="JUU-K2-jlf"/>
                                     <constraint firstItem="QNd-eV-tKW" firstAttribute="leading" secondItem="FrP-lf-5Wj" secondAttribute="trailing" constant="5" id="MTs-hU-qMa"/>
+                                    <constraint firstAttribute="bottom" secondItem="QNd-eV-tKW" secondAttribute="bottom" constant="15" id="MlM-Xr-fNv"/>
+                                    <constraint firstItem="QNd-eV-tKW" firstAttribute="top" secondItem="lOF-c4-Q3d" secondAttribute="top" constant="15" id="Pdk-Z3-pmd"/>
                                     <constraint firstItem="FrP-lf-5Wj" firstAttribute="bottom" secondItem="lOF-c4-Q3d" secondAttribute="bottom" constant="-10" id="T5u-gB-GRd"/>
                                     <constraint firstItem="e87-gd-AwN" firstAttribute="width" secondItem="lOF-c4-Q3d" secondAttribute="width" multiplier="0.4" id="iK7-cW-ESZ"/>
                                     <constraint firstItem="FrP-lf-5Wj" firstAttribute="top" secondItem="e87-gd-AwN" secondAttribute="bottom" constant="10" id="tWk-0e-hZo"/>

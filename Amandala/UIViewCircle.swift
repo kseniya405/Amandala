@@ -2,7 +2,7 @@
 //  UIViewCircle.swift
 //  Amandala
 //
-//  Created by Денис Марков on 15.01.2020.
+//  Created by Kseniia Shkurenkoon 15.01.2020.
 //  Copyright © 2020 Kseniia Shkurenko. All rights reserved.
 //
 

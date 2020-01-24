@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Amandala
 //
-//  Created by Денис Марков on 02.01.2020.
+//  Created by Kseniia Shkurenkoon 02.01.2020.
 //  Copyright © 2020 Kseniia Shkurenko. All rights reserved.
 //
 
@@ -17,6 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
+    }
+    
+    func applicationDidReceiveMemoryWarning (_ application: UIApplication) {
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared.diskCapacity = 0
+        URLCache.shared.memoryCapacity = 0
     }
 
     // MARK: UISceneSession Lifecycle
