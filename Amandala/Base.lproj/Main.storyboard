@@ -149,7 +149,7 @@
                                         </collectionViewFlowLayout>
                                         <cells/>
                                     </collectionView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QNd-eV-tKW" customClass="SaturationPicker" customModule="Amandala" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QNd-eV-tKW" customClass="AlphaPicker" customModule="Amandala" customModuleProvider="target">
                                         <rect key="frame" x="333" y="15" width="20" height="140.66666666666666"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -200,17 +200,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Mandala" largeTitleDisplayMode="always" id="gyH-uv-1xN"/>
                     <connections>
+                        <outlet property="alphaPickerView" destination="QNd-eV-tKW" id="p6d-nN-0Hl"/>
                         <outlet property="backButton" destination="e4x-eY-bCP" id="anJ-Lx-GVf"/>
                         <outlet property="colorPalleteButton" destination="ahN-mB-r0F" id="KL8-Ik-8HP"/>
                         <outlet property="eraserButton" destination="V1X-Dw-g0x" id="9tP-d1-Oq4"/>
                         <outlet property="fillButton" destination="fKc-UI-TSQ" id="evg-dj-cqQ"/>
                         <outlet property="imageScrollView" destination="40g-rh-sC3" id="ngB-pT-3MX"/>
                         <outlet property="mandalaImageView" destination="lC0-AL-33k" id="fjK-lH-9d5"/>
-                        <outlet property="maskImageView" destination="aRe-Jl-L1K" id="pTw-Kd-xnb"/>
                         <outlet property="paletteCollectionView" destination="FrP-lf-5Wj" id="4K7-hZ-nkJ"/>
-                        <outlet property="paletteCollectionViewFlowLayout" destination="NfF-Vw-vvy" id="m0i-YD-Z9R"/>
                         <outlet property="redoButton" destination="Mnm-eR-6f9" id="l2V-xQ-HHW"/>
-                        <outlet property="saturationView" destination="QNd-eV-tKW" id="p6d-nN-0Hl"/>
                         <outlet property="saveButton" destination="ihk-mX-abp" id="OLK-7S-FV0"/>
                         <outlet property="topBarView" destination="aWO-D5-xvP" id="3bV-7k-MtE"/>
                         <outlet property="undoButton" destination="fDD-ah-dXB" id="HOV-SM-axX"/>
@@ -220,10 +218,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="cCi-Fm-ufW"/>
             </objects>
-            <point key="canvasLocation" x="130.40000000000001" y="138.17733990147784"/>
+            <point key="canvasLocation" x="-138" y="173"/>
+        </scene>
+        <!--Library View Controller-->
+        <scene sceneID="T6d-di-kBw">
+            <objects>
+                <viewController storyboardIdentifier="LibraryViewController" id="PC9-aU-8tY" customClass="LibraryViewController" customModule="Amandala" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A3y-4z-lCv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vG-Gr-WBC" userLabel="TopBarView">
+                                <rect key="frame" x="0.0" y="44" width="375" height="60"/>
+                                <color key="backgroundColor" red="0.96808677909999996" green="0.33882308010000001" blue="0.30929239359999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="trf-Tp-z2l"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a Mandala" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Coq-IW-G9c">
+                                <rect key="frame" x="112.00000000000001" y="63.666666666666657" width="151.33333333333337" height="21"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuX-RL-uNr">
+                                <rect key="frame" x="0.0" y="729" width="375" height="83"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Library" image="LibraryUntap" selectedImage="LabraryTap" id="Et8-Wz-Sn3"/>
+                                    <tabBarItem title="Gallery" id="KFm-Qq-ba3"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1vG-Gr-WBC" firstAttribute="width" secondItem="A3y-4z-lCv" secondAttribute="width" id="AFr-cO-sa8"/>
+                            <constraint firstItem="Coq-IW-G9c" firstAttribute="centerX" secondItem="1vG-Gr-WBC" secondAttribute="centerX" id="BDw-ZA-Br0"/>
+                            <constraint firstItem="1vG-Gr-WBC" firstAttribute="top" secondItem="m2k-qz-A7P" secondAttribute="top" id="VOH-aC-TIR"/>
+                            <constraint firstItem="yuX-RL-uNr" firstAttribute="width" secondItem="A3y-4z-lCv" secondAttribute="width" id="b3o-ro-Epd"/>
+                            <constraint firstItem="yuX-RL-uNr" firstAttribute="centerX" secondItem="m2k-qz-A7P" secondAttribute="centerX" id="ndh-ut-4v1"/>
+                            <constraint firstItem="Coq-IW-G9c" firstAttribute="centerY" secondItem="1vG-Gr-WBC" secondAttribute="centerY" id="sVc-d9-vvU"/>
+                            <constraint firstItem="yuX-RL-uNr" firstAttribute="bottom" secondItem="A3y-4z-lCv" secondAttribute="bottom" id="w9J-8Z-NIP"/>
+                            <constraint firstItem="1vG-Gr-WBC" firstAttribute="centerX" secondItem="m2k-qz-A7P" secondAttribute="centerX" id="xei-db-Efg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="m2k-qz-A7P"/>
+                    </view>
+                    <connections>
+                        <outlet property="chooseMandalaLable" destination="Coq-IW-G9c" id="EJn-u6-CMN"/>
+                        <outlet property="topBarView" destination="1vG-Gr-WBC" id="ac1-Cz-jlQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JbT-QD-kYt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="593" y="173"/>
         </scene>
     </scenes>
     <resources>
+        <image name="LabraryTap" width="25" height="18"/>
+        <image name="LibraryUntap" width="25" height="18"/>
         <image name="eraserUntap" width="34" height="34"/>
         <image name="fillTap" width="34" height="34"/>
         <image name="palleteUntap" width="32" height="32"/>

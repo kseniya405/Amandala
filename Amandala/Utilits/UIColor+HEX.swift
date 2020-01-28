@@ -2,7 +2,7 @@
 //  UIColor+HEX.swift
 //  Amandala
 //
-//  Created by Kseniia Shkurenkoon 02.01.2020.
+//  Created by Kseniia Shkurenko 02.01.2020.
 //  Copyright © 2020 Kseniia Shkurenko. All rights reserved.
 //
 //  Allows you to use the hexadecimal value of a color to initialize it.

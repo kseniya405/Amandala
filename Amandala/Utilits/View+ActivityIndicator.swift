@@ -2,7 +2,7 @@
 //  View+ActivityIndicator.swift
 //  Amandala
 //
-//  Created by Kseniia Shkurenkoon 14.01.2020.
+//  Created by Kseniia Shkurenko 14.01.2020.
 //  Copyright © 2020 Kseniia Shkurenko. All rights reserved.
 //
 
