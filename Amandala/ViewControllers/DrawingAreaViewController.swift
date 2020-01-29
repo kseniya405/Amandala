@@ -12,9 +12,6 @@ import ChromaColorPicker
 /// cell identifier of the CollectionView palette
 fileprivate let identifierCollectionViewCell = "ChooseColorCollectionViewCell"
 
-/// the name of the picture (now hardcoated)
-fileprivate let pngImageName = "15-2500"
-
 /// number of lines in a palette of color
 fileprivate let numSectionPallete = 2
 
@@ -70,7 +67,7 @@ class DrawingAreaViewController: UIViewController {
     
     @IBOutlet weak var saveButton: UIButton! {
         didSet {
-            //            saveButton.addTarget(self, action: #selector(saveDidTap), for: .touchUpInside)
+            saveButton.addTarget(self, action: #selector(saveDidTap), for: .touchUpInside)
         }
     }
     
@@ -109,6 +106,8 @@ class DrawingAreaViewController: UIViewController {
     /// index of the selected cell in colorPalleteButton
     var selectedCell: IndexPath?
     
+    var image = UIImage()
+    
     override func viewDidLayoutSubviews() {
         topBarView.round(corners: [.bottomLeft, .bottomRight], radius: 50)
     }
@@ -128,11 +127,11 @@ class DrawingAreaViewController: UIViewController {
         mandalaImageView.addGestureRecognizer(tap)
         mandalaImageView.isUserInteractionEnabled = true
         
-        mandalaImageView.image = UIImage(named: pngImageName)
+        mandalaImageView.image = image
     }
     
     @objc func backButtonDidTap() {
-        mandalaImageView.image = UIImage(named: pngImageName)
+        self.dismiss()
     }
     
     @objc func undoDidTap() {
@@ -142,6 +141,23 @@ class DrawingAreaViewController: UIViewController {
     @objc func redoDidTap() {
         mandalaImageView.redo()
     }
+    
+    @objc func saveDidTap() {
+        let fileManager = FileManager.default
+        
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ddMMyyyyhhmmssa"
+        let convertedDate: String = dateFormatter.string(from: currentDate)
+        
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(convertedDate).png")
+        print(paths)
+        let image = mandalaImageView.image
+        let imageData = image?.pngData()
+        fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
+
+    }
+
     
     /// Activates the fill button, traces the selected color (default - Colors.brown)
     @objc func fillButtonDidTap() {
@@ -199,6 +215,9 @@ class DrawingAreaViewController: UIViewController {
         mandalaImageView.buckerFill(point, replacementColor: newColor)
     }
     
+    func setImage(image: UIImage) {
+        self.image = image
+    }
     
     /// Changes the image on the buttons, depending on which one is selected
     /// Example:
@@ -211,6 +230,15 @@ class DrawingAreaViewController: UIViewController {
         fillButton.setImage(UIImage(named: imageFillName), for: .normal)
         eraserButton.setImage(UIImage(named: imageEraserName), for: .normal)
         colorPalleteButton.setImage(UIImage(named: imagePalleteName), for: .normal)
+    }
+    
+    
+    func saveImage() {
+        let fileManager = FileManager.default
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("apple.jpg")
+        let image = mandalaImageView.image
+        let imageData = image?.pngData()
+        fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
     }
     
 }

@@ -12,7 +12,7 @@ public extension UIView {
     
     /// rounds all corners
     func makeAllCorners(){
-        let path = UIBezierPath(roundedRect:bounds, byRoundingCorners:[.topRight, .topLeft], cornerRadii: CGSize(width: 8, height: 8))
+        let path = UIBezierPath(roundedRect:bounds, byRoundingCorners:[.topRight, .topLeft, .bottomLeft, .bottomRight], cornerRadii: CGSize(width: 8, height: 8))
         let maskLayer = CAShapeLayer()
         maskLayer.path = path.cgPath
         layer.mask = maskLayer

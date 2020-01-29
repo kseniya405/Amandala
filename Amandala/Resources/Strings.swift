@@ -15,6 +15,7 @@ struct Strings {
     static let easy = "Easy"
     static let medium = "Medium"
     static let complex = "Complex"
+    static let special = "Special"
     static let animalsSymbols = "Animals Symbols"
     static let library = "Library"
     static let gallery = "Gallery"

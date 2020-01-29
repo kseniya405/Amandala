@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ayj-UY-n17">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Mandala-->
+        <!--DrawingAreaViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DrawingAreaViewController" customModule="Amandala" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DrawingAreaViewController" title="DrawingAreaViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DrawingAreaViewController" customModule="Amandala" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,67 +219,171 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="cCi-Fm-ufW"/>
             </objects>
-            <point key="canvasLocation" x="-138" y="173"/>
+            <point key="canvasLocation" x="2262" y="174"/>
         </scene>
-        <!--Library View Controller-->
-        <scene sceneID="T6d-di-kBw">
+        <!--Gallery-->
+        <scene sceneID="EOL-eF-afA">
             <objects>
-                <viewController storyboardIdentifier="LibraryViewController" id="PC9-aU-8tY" customClass="LibraryViewController" customModule="Amandala" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="A3y-4z-lCv">
+                <viewController restorationIdentifier="GalleryViewController" storyboardIdentifier="GalleryViewController" id="B0s-EH-rPw" customClass="GalleryViewController" customModule="Amandala" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QaZ-Bv-NEA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vG-Gr-WBC" userLabel="TopBarView">
-                                <rect key="frame" x="0.0" y="44" width="375" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oly-HB-oyi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                                 <color key="backgroundColor" red="0.96808677909999996" green="0.33882308010000001" blue="0.30929239359999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="trf-Tp-z2l"/>
-                                </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a Mandala" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Coq-IW-G9c">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpb-XY-u5M">
+                                <rect key="frame" x="159" y="63.666666666666657" width="57.333333333333343" height="21"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TXU-NP-TNO">
+                                <rect key="frame" x="0.0" y="104" width="375" height="625"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="182-NP-2ku">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="zts-WJ-011">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7FK-lb-gc0">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="TXU-NP-TNO" firstAttribute="centerX" secondItem="pGA-Wv-arF" secondAttribute="centerX" id="2ar-Hz-Bps"/>
+                            <constraint firstItem="oly-HB-oyi" firstAttribute="bottom" secondItem="pGA-Wv-arF" secondAttribute="top" constant="60" id="84x-dQ-9v7"/>
+                            <constraint firstItem="oly-HB-oyi" firstAttribute="centerX" secondItem="pGA-Wv-arF" secondAttribute="centerX" id="BMm-U3-iVo"/>
+                            <constraint firstItem="TXU-NP-TNO" firstAttribute="top" secondItem="oly-HB-oyi" secondAttribute="bottom" id="DOp-bs-ye4"/>
+                            <constraint firstItem="lpb-XY-u5M" firstAttribute="centerY" secondItem="oly-HB-oyi" secondAttribute="bottom" constant="-30" id="Ir3-41-OFi"/>
+                            <constraint firstItem="oly-HB-oyi" firstAttribute="top" secondItem="QaZ-Bv-NEA" secondAttribute="top" id="Qsx-u3-SpO"/>
+                            <constraint firstItem="pGA-Wv-arF" firstAttribute="bottom" secondItem="TXU-NP-TNO" secondAttribute="bottom" id="Yoj-e0-kJ8"/>
+                            <constraint firstItem="lpb-XY-u5M" firstAttribute="centerX" secondItem="oly-HB-oyi" secondAttribute="centerX" id="kRR-25-SVe"/>
+                            <constraint firstItem="oly-HB-oyi" firstAttribute="width" secondItem="pGA-Wv-arF" secondAttribute="width" id="tBn-eb-cCc"/>
+                            <constraint firstItem="TXU-NP-TNO" firstAttribute="width" secondItem="QaZ-Bv-NEA" secondAttribute="width" id="v9S-j4-RwH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pGA-Wv-arF"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Gallery" image="gallery" id="W4C-Ix-YWn"/>
+                    <connections>
+                        <outlet property="collectionView" destination="TXU-NP-TNO" id="3Bp-i5-50R"/>
+                        <outlet property="galleryLable" destination="lpb-XY-u5M" id="tz4-mP-nUG"/>
+                        <outlet property="topBarView" destination="oly-HB-oyi" id="QXx-DJ-igP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JaY-me-BFf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1521" y="500"/>
+        </scene>
+        <!--Library-->
+        <scene sceneID="wpV-ZZ-rW6">
+            <objects>
+                <viewController storyboardIdentifier="LibraryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4fe-Ef-dEv" customClass="LibraryViewController" customModule="Amandala" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RPn-dz-j4b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gp-QH-AQ6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                                <color key="backgroundColor" red="0.96808677909999996" green="0.33882308010000001" blue="0.30929239359999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a Mandala" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFC-j6-kmw">
                                 <rect key="frame" x="112.00000000000001" y="63.666666666666657" width="151.33333333333337" height="21"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuX-RL-uNr">
-                                <rect key="frame" x="0.0" y="729" width="375" height="83"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <tabBarItem title="Library" image="LibraryUntap" selectedImage="LabraryTap" id="Et8-Wz-Sn3"/>
-                                    <tabBarItem title="Gallery" id="KFm-Qq-ba3"/>
-                                </items>
-                            </tabBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Isp-eq-q0O">
+                                <rect key="frame" x="0.0" y="124" width="375" height="605"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <sections/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="1vG-Gr-WBC" firstAttribute="width" secondItem="A3y-4z-lCv" secondAttribute="width" id="AFr-cO-sa8"/>
-                            <constraint firstItem="Coq-IW-G9c" firstAttribute="centerX" secondItem="1vG-Gr-WBC" secondAttribute="centerX" id="BDw-ZA-Br0"/>
-                            <constraint firstItem="1vG-Gr-WBC" firstAttribute="top" secondItem="m2k-qz-A7P" secondAttribute="top" id="VOH-aC-TIR"/>
-                            <constraint firstItem="yuX-RL-uNr" firstAttribute="width" secondItem="A3y-4z-lCv" secondAttribute="width" id="b3o-ro-Epd"/>
-                            <constraint firstItem="yuX-RL-uNr" firstAttribute="centerX" secondItem="m2k-qz-A7P" secondAttribute="centerX" id="ndh-ut-4v1"/>
-                            <constraint firstItem="Coq-IW-G9c" firstAttribute="centerY" secondItem="1vG-Gr-WBC" secondAttribute="centerY" id="sVc-d9-vvU"/>
-                            <constraint firstItem="yuX-RL-uNr" firstAttribute="bottom" secondItem="A3y-4z-lCv" secondAttribute="bottom" id="w9J-8Z-NIP"/>
-                            <constraint firstItem="1vG-Gr-WBC" firstAttribute="centerX" secondItem="m2k-qz-A7P" secondAttribute="centerX" id="xei-db-Efg"/>
+                            <constraint firstItem="5gp-QH-AQ6" firstAttribute="top" secondItem="RPn-dz-j4b" secondAttribute="top" id="1Yy-57-WsI"/>
+                            <constraint firstItem="Isp-eq-q0O" firstAttribute="top" secondItem="5gp-QH-AQ6" secondAttribute="bottom" constant="20" id="7pr-Kb-AdJ"/>
+                            <constraint firstItem="5gp-QH-AQ6" firstAttribute="bottom" secondItem="lFC-j6-kmw" secondAttribute="centerY" constant="30" id="Fy4-KP-13R"/>
+                            <constraint firstItem="lFC-j6-kmw" firstAttribute="centerX" secondItem="5gp-QH-AQ6" secondAttribute="centerX" id="MJd-qM-yFN"/>
+                            <constraint firstItem="Isp-eq-q0O" firstAttribute="width" secondItem="RPn-dz-j4b" secondAttribute="width" id="TMN-kd-dDV"/>
+                            <constraint firstItem="Isp-eq-q0O" firstAttribute="centerX" secondItem="Q7A-Fe-xUN" secondAttribute="centerX" id="W4g-7d-OLb"/>
+                            <constraint firstItem="Q7A-Fe-xUN" firstAttribute="bottom" secondItem="Isp-eq-q0O" secondAttribute="bottom" id="YJM-s1-wH6"/>
+                            <constraint firstItem="5gp-QH-AQ6" firstAttribute="centerX" secondItem="Q7A-Fe-xUN" secondAttribute="centerX" id="YSq-TR-9dQ"/>
+                            <constraint firstItem="5gp-QH-AQ6" firstAttribute="bottom" secondItem="Q7A-Fe-xUN" secondAttribute="top" constant="60" id="gf3-vm-9jI"/>
+                            <constraint firstItem="5gp-QH-AQ6" firstAttribute="width" secondItem="RPn-dz-j4b" secondAttribute="width" id="p7H-mQ-YVp"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="m2k-qz-A7P"/>
+                        <viewLayoutGuide key="safeArea" id="Q7A-Fe-xUN"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Library" image="library" id="waE-Zp-p8W"/>
                     <connections>
-                        <outlet property="chooseMandalaLable" destination="Coq-IW-G9c" id="EJn-u6-CMN"/>
-                        <outlet property="topBarView" destination="1vG-Gr-WBC" id="ac1-Cz-jlQ"/>
+                        <outlet property="chooseMandalaLable" destination="lFC-j6-kmw" id="zCR-Tt-PZm"/>
+                        <outlet property="tableView" destination="Isp-eq-q0O" id="1qE-G4-QNI"/>
+                        <outlet property="topBarView" destination="5gp-QH-AQ6" id="JRs-AF-R1q"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JbT-QD-kYt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ndz-8a-xvs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="593" y="173"/>
+            <point key="canvasLocation" x="1521" y="-154"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fxh-Zh-FqX">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="Ayj-UY-n17" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wE3-KF-nTJ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="rdL-HH-jBt" kind="relationship" relationship="rootViewController" id="uXk-wH-MLF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iwz-8Q-ou0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-255" y="174"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="1TL-Jk-oTb">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rdL-HH-jBt" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="0op-Xh-FdV"/>
+                    <tabBar key="tabBar" contentMode="bottom" insetsLayoutMarginsFromSafeArea="NO" id="GZk-sz-Mq4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.96808677909999996" green="0.33882308010000001" blue="0.30929239359999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.96808677909999996" green="0.33882308010000001" blue="0.30929239359999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="4fe-Ef-dEv" kind="relationship" relationship="viewControllers" id="cmF-eG-YKf"/>
+                        <segue destination="B0s-EH-rPw" kind="relationship" relationship="viewControllers" id="pKt-eK-WAw"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0PI-Ut-Wp8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="569" y="174"/>
         </scene>
     </scenes>
     <resources>
-        <image name="LabraryTap" width="25" height="18"/>
-        <image name="LibraryUntap" width="25" height="18"/>
         <image name="eraserUntap" width="34" height="34"/>
         <image name="fillTap" width="34" height="34"/>
+        <image name="gallery" width="28" height="23"/>
+        <image name="library" width="25" height="18"/>
         <image name="palleteUntap" width="32" height="32"/>
         <image name="remove" width="25" height="21"/>
         <image name="save" width="25" height="25"/>
