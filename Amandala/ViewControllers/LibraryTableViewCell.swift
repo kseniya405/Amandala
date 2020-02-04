@@ -8,7 +8,7 @@
 
 import UIKit
 
-fileprivate let identifierCollectionViewCell = "MandalaCollectionViewCell"
+fileprivate let identifierCollectionViewCell = "LibraryCollectionViewCell"
 
 
 protocol LibraryTableCellDelegate {
@@ -40,7 +40,7 @@ class LibraryTableViewCell: UITableViewCell {
 
 extension LibraryTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       let cell = collectionView.cellForItem(at: indexPath) as! MandalaCollectionViewCell
+       let cell = collectionView.cellForItem(at: indexPath) as! LibraryCollectionViewCell
         let image = cell.getImage()
         delegate?.imageDidChange(image: image)
     }
@@ -53,10 +53,10 @@ extension LibraryTableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifierCollectionViewCell, for: indexPath) as! MandalaCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifierCollectionViewCell, for: indexPath) as! LibraryCollectionViewCell
         if indexPath.row < numImagesInSection {
             let path = Bundle.main.path(forResource: "\(headerName ?? "medium")\(indexPath.row)", ofType: "png")
-            cell.setImage(path: path)
+            cell.setImage(path: path, size: collectionView.bounds.width / 2.5)
         }
         return cell
     }
@@ -66,7 +66,7 @@ extension LibraryTableViewCell: UICollectionViewDataSource {
 
 extension LibraryTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = UIScreen.main.bounds.width / 2.5
+        let size = UIScreen.main.bounds.size.width / 2.5
         return CGSize(width: size, height: size)
     }
 }

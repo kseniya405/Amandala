@@ -34,7 +34,7 @@ class LibraryViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        topBarView.round(corners: [.bottomLeft, .bottomRight], radius: 50)
+        topBarView.round(corners: [.bottomLeft, .bottomRight], radius: 30)
     }
     
 }
@@ -60,15 +60,20 @@ extension LibraryViewController: UITableViewDataSource {
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.width / 2.5 + 20
     }
     
-    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        let valueSection = HardcodedValuePictures(header: sectionName[section])
-    //        return valueSection.header
-    //    }
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
+}
+
+
+// MARK: UITableViewDelegate
+extension LibraryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifierHeader) as! HeaderOrderTableView
         let valueSection = HardcodedValuePictures(header: sectionName[section])
@@ -78,11 +83,7 @@ extension LibraryViewController: UITableViewDataSource {
     }
 }
 
-// MARK: UITableViewDelegate
-extension LibraryViewController: UITableViewDelegate {
-    
-}
-
+// MARK: LibraryTableCellDelegate
 extension LibraryViewController:  LibraryTableCellDelegate {
     
     func imageDidChange(image: UIImage?) {
@@ -94,3 +95,4 @@ extension LibraryViewController:  LibraryTableCellDelegate {
     }
     
 }
+

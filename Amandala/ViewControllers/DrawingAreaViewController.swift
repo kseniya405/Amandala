@@ -8,6 +8,7 @@
 
 import UIKit
 import ChromaColorPicker
+import DeviceCheck
 
 /// cell identifier of the CollectionView palette
 fileprivate let identifierCollectionViewCell = "ChooseColorCollectionViewCell"
@@ -19,7 +20,7 @@ fileprivate let numSectionPallete = 2
 fileprivate let numItemInSection = 9
 
 /// bottom indent from palette line
-fileprivate let bottomInsetsCollectionView: CGFloat = 10
+fileprivate let insetsCollectionView: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
 
 /// default colors in the palette of colors (first row of the palette)
 fileprivate let defaultColors = [Colors.brown, Colors.red, Colors.pink, Colors.orange, Colors.yellow, Colors.lightGreen, Colors.darkGreen, Colors.blue, Colors.darkBlue]
@@ -30,6 +31,10 @@ fileprivate enum TypeTapButton: Int {
     case eraser
     case palette
 }
+
+fileprivate let alphaPickerWidthForIPad: CGFloat = 40
+fileprivate let alphaPickerWidthForIPhone: CGFloat = 20
+
 
 /// shows which button is currently selected
 fileprivate var typeButtonTap = TypeTapButton.fill
@@ -71,7 +76,13 @@ class DrawingAreaViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var paletteCollectionView: UICollectionView!    
+    @IBOutlet weak var shareButton: UIButton! {
+        didSet {
+            shareButton.addTarget(self, action: #selector(shareDidTap), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var paletteCollectionView: UICollectionView!
     
     @IBOutlet weak var fillButton: UIButton! {
         didSet {
@@ -97,6 +108,11 @@ class DrawingAreaViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var alphaPickerWidth: NSLayoutConstraint!
+        
+    @IBOutlet weak var alphaColorIndicator: UIViewCircle!
+    
+    
     /// colors in the palette of colors that the user selected (the second row of the palette)
     var customColors = [UIColor]()
     
@@ -116,18 +132,24 @@ class DrawingAreaViewController: UIViewController {
         super.viewDidLoad()
         
         alphaPickerView.delegate = self
+        alphaPickerView.layer.borderWidth = 1
+        alphaPickerView.layer.borderColor = UIColor.black.cgColor
+        
         imageScrollView.delegate = self
         
         selectedCell = IndexPath(item: 0, section: 0)
         paletteCollectionView.delegate = self
         paletteCollectionView.dataSource = self
         paletteCollectionView.register(UINib(nibName: identifierCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: identifierCollectionViewCell)
+
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture(_:)))
         mandalaImageView.addGestureRecognizer(tap)
         mandalaImageView.isUserInteractionEnabled = true
-        
         mandalaImageView.image = image
+        
+        alphaPickerWidth.constant = UIDevice().model == "iPad" ? alphaPickerWidthForIPad : alphaPickerWidthForIPhone
+        
     }
     
     @objc func backButtonDidTap() {
@@ -143,21 +165,16 @@ class DrawingAreaViewController: UIViewController {
     }
     
     @objc func saveDidTap() {
-        let fileManager = FileManager.default
-        
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "ddMMyyyyhhmmssa"
-        let convertedDate: String = dateFormatter.string(from: currentDate)
-        
-        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(convertedDate).png")
-        print(paths)
-        let image = mandalaImageView.image
-        let imageData = image?.pngData()
-        fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
-
+        saveImage()
+        goToLibraryScreen()
     }
-
+    
+    @objc func shareDidTap() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "ShareViewController") as! ShareViewController
+        initialViewController.setImage(image: mandalaImageView.image)
+        self.navigationController?.pushViewController(initialViewController, animated: false)
+    }
     
     /// Activates the fill button, traces the selected color (default - Colors.brown)
     @objc func fillButtonDidTap() {
@@ -233,14 +250,28 @@ class DrawingAreaViewController: UIViewController {
     }
     
     
+    /// Saves an image in a directory
     func saveImage() {
         let fileManager = FileManager.default
-        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("apple.jpg")
+        
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ddMMyyyyhhmmssa"
+        let convertedDate: String = dateFormatter.string(from: currentDate)
+        
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(convertedDate).png")
         let image = mandalaImageView.image
         let imageData = image?.pngData()
         fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
+        
     }
     
+    func goToLibraryScreen() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! CustomTabBarViewController
+        initialViewController.selectedIndex = 1
+        self.navigationController?.pushViewController(initialViewController, animated: false)
+    }
 }
 
 //MARK: UIScrollView Delegate
@@ -291,8 +322,9 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = (Int(collectionView.frame.width) - (numItemInSection - 1) * Int(bottomInsetsCollectionView)) / numItemInSection
-        return CGSize(width: size, height: size)
+        let width = (collectionView.frame.width) - CGFloat(numItemInSection) * 5 / CGFloat(numItemInSection) - 20
+        let height = collectionView.bounds.size.height / 2 - insetsCollectionView.bottom
+        return width < height ? CGSize(width: width, height: width) : CGSize(width: height, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -300,7 +332,7 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: bottomInsetsCollectionView, right: 0)
+        return insetsCollectionView
     }
     
     
@@ -342,16 +374,17 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
         alphaPickerView.currentColor = replacementColor
         selectedCell = indexPath
         collectionView.reloadItems(at: [indexPath])
+        
+        
     }
     
 }
 
 //MARK: ColorPickerViewControllerDelegate
 extension DrawingAreaViewController: ColorPickerViewControllerDelegate {
-
+    
     
     func colorPickerDidChooseColor(_ color: UIColor?) {
-        
         guard let chooseColor = color else {
             fillButtonDidTap()
             return
@@ -387,7 +420,16 @@ extension DrawingAreaViewController: ColorPickerViewControllerDelegate {
 
 //MARK: SaturationPickerDelegate
 extension DrawingAreaViewController: AlphaPickerDelegate {
+    func didBeginHandleTouch() {
+        alphaColorIndicator.isHidden = false
+    }
+    
+    func didEndHandleTouch() {
+        alphaColorIndicator.isHidden = true
+    }
+    
     func valuePicked(_ color: UIColor) {
         replacementColor = color
+        alphaColorIndicator.backgroundColor  = color
     }
 }

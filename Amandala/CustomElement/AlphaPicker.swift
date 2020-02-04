@@ -12,6 +12,8 @@ import UIKit
 public protocol AlphaPickerDelegate : class {
     /// reports that the alpha value has been changed and conveys a new color
     func valuePicked(_ color: UIColor)
+    func didBeginHandleTouch()
+    func didEndHandleTouch()
 }
 
 /// Vertical alpha picker, to select a new color, which is a copy of the current, but with a different alpha value
@@ -60,12 +62,12 @@ open class AlphaPicker: UIView {
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = color
     }
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = color
         update()
     }
     
@@ -83,20 +85,21 @@ open class AlphaPicker: UIView {
         UIBezierPath(roundedRect: rect, cornerRadius: 0).addClip()
         
         for y: Int in 0 ..< Int(size.height) {
-            UIColor(red: redValue , green: greenValue, blue: blueValue, alpha: 1 - CGFloat(CGFloat(y) / size.height)).set()
+            convertColorFromRGBAToRGB(alphaValue: 1 - CGFloat(CGFloat(y) / size.height)).set()
             let temp = CGRect(x: 0, y: CGFloat(y), width: size.width, height: 1)
             UIRectFill(temp)
         }
         
         let image: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+
         UIGraphicsEndImageContext()
         return image
     }
     
     /// updates AlphaPicker
     func update() {
-        currentSelectionY = self.frame.size.width / 2 + 2
-        alphaGradientImage = generateAlphaGradientImage(self.frame.size)
+        currentSelectionY = 5
+        alphaGradientImage = generateAlphaGradientImage(self.bounds.size)
     }
     
     /// draws a line that shows what alpha value the user selected
@@ -104,23 +107,19 @@ open class AlphaPicker: UIView {
         super.draw(rect)
         
         let radius = self.frame.size.width
-        let halfRadius = radius * 0.5
+//        let halfRadius = radius * 0.5
         var circleY = currentSelectionY
-        if circleY < 0 {
-            circleY = 0
+        if circleY < 5 {
+            circleY = 5
         }
         let circleRect = CGRect(x: 0, y: circleY, width: radius + 2, height: 2)
-        var hueRect = rect
-        
-        hueRect.size.height -= radius
-        hueRect.origin.y += halfRadius
-        alphaGradientImage?.draw(in: hueRect)
+
+        alphaGradientImage?.draw(in: rect)
         
         let context = UIGraphicsGetCurrentContext()
         context?.addRect(circleRect)
         context?.fillPath()
         context?.strokePath()
-        
     }
     
     // MARK: - Touch events
@@ -130,6 +129,7 @@ open class AlphaPicker: UIView {
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: AnyObject? = touches.first
         if let point = touch?.location(in: self) {
+            delegate?.didBeginHandleTouch()
             handleTouch(point)
         }
     }
@@ -149,6 +149,7 @@ open class AlphaPicker: UIView {
     open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: AnyObject? = touches.first
         if let point = touch?.location(in: self) {
+            delegate?.didEndHandleTouch()
             handleTouch(point)
         }
     }
@@ -162,19 +163,14 @@ open class AlphaPicker: UIView {
     ///  - parameter touchPoint touch point coordinate
     func handleTouch(_ touchPoint: CGPoint) {
         currentSelectionY = touchPoint.y
-        
-        let offset = self.frame.size.width
-        let halfOffset = offset * 0.5
-        
-        if currentSelectionY < halfOffset {
-            currentSelectionY = halfOffset
-        }
-            
-        else if currentSelectionY >= self.frame.size.height - halfOffset {
-            currentSelectionY = self.frame.size.height - halfOffset
+                
+        if currentSelectionY < 5 {
+            currentSelectionY = 5
+        } else if currentSelectionY > self.frame.size.height - 5 {
+            currentSelectionY = self.frame.size.height - 5
         }
         
-        let alpha = 1 - CGFloat((currentSelectionY - halfOffset) / (self.frame.size.height - offset))
+        let alpha = 1 - CGFloat((currentSelectionY) / (self.frame.size.height))
         
         color = convertColorFromRGBAToRGB(alphaValue: alpha)
         
