@@ -20,7 +20,7 @@ fileprivate let numSectionPallete = 2
 fileprivate let numItemInSection = 9
 
 /// bottom indent from palette line
-fileprivate let insetsCollectionView: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+fileprivate var insetsCollectionView: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
 
 /// default colors in the palette of colors (first row of the palette)
 fileprivate let defaultColors = [Colors.brown, Colors.red, Colors.pink, Colors.orange, Colors.yellow, Colors.lightGreen, Colors.darkGreen, Colors.blue, Colors.darkBlue]
@@ -30,6 +30,7 @@ fileprivate enum TypeTapButton: Int {
     case fill
     case eraser
     case palette
+    case dropper
 }
 
 fileprivate let alphaPickerWidthForIPad: CGFloat = 40
@@ -47,7 +48,7 @@ class DrawingAreaViewController: UIViewController {
     @IBOutlet weak var imageScrollView: UIScrollView! {
         didSet {
             imageScrollView.minimumZoomScale = 1.0
-            imageScrollView.maximumZoomScale = 10
+            imageScrollView.maximumZoomScale = 20
         }
     }
     @IBOutlet weak var viewForZoom: UIView!
@@ -102,6 +103,12 @@ class DrawingAreaViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var dropperButton: UIButton!   {
+        didSet {
+            dropperButton.addTarget(self, action: #selector(dropperButtonDidTap), for: .touchUpInside)
+        }
+    }
+    
     @IBOutlet weak var alphaPickerView: AlphaPicker! {
         didSet {
             alphaPickerView.currentColor = Colors.brown
@@ -109,8 +116,18 @@ class DrawingAreaViewController: UIViewController {
     }
     
     @IBOutlet weak var alphaPickerWidth: NSLayoutConstraint!
-        
-    @IBOutlet weak var alphaColorIndicator: UIViewCircle!
+    
+    @IBOutlet weak var alphaColorIndicator: UIViewCircle! {
+        didSet {
+            alphaColorIndicator.layer.borderWidth = 1
+            alphaColorIndicator.layer.borderColor = UIColor.black.cgColor
+            
+            alphaColorIndicator.layer.shadowColor = UIColor.black.cgColor
+            alphaColorIndicator.layer.shadowOffset = CGSize(width: 10, height: 10)
+            alphaColorIndicator.layer.shadowOpacity = 0.5
+            alphaColorIndicator.layer.shadowRadius = 10
+        }
+    }
     
     
     /// colors in the palette of colors that the user selected (the second row of the palette)
@@ -122,7 +139,16 @@ class DrawingAreaViewController: UIViewController {
     /// index of the selected cell in colorPalleteButton
     var selectedCell: IndexPath?
     
+    /// if the image was opened from the gallery screen, then this is the path to this image in the file manager.
+    /// need to delete the previous version of the picture after saving the new
+    var pathSelectedImagesFromGallery: String?
+    
+    /// mandala Image
     var image = UIImage()
+    
+    /// indicates whether the selected color is a color from the palette
+    var isColorPalette = true
+    
     
     override func viewDidLayoutSubviews() {
         topBarView.round(corners: [.bottomLeft, .bottomRight], radius: 50)
@@ -141,7 +167,7 @@ class DrawingAreaViewController: UIViewController {
         paletteCollectionView.delegate = self
         paletteCollectionView.dataSource = self
         paletteCollectionView.register(UINib(nibName: identifierCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: identifierCollectionViewCell)
-
+        
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture(_:)))
         mandalaImageView.addGestureRecognizer(tap)
@@ -149,6 +175,8 @@ class DrawingAreaViewController: UIViewController {
         mandalaImageView.image = image
         
         alphaPickerWidth.constant = UIDevice().model == "iPad" ? alphaPickerWidthForIPad : alphaPickerWidthForIPhone
+        
+        
         
     }
     
@@ -179,26 +207,48 @@ class DrawingAreaViewController: UIViewController {
     /// Activates the fill button, traces the selected color (default - Colors.brown)
     @objc func fillButtonDidTap() {
         
-        if typeButtonTap != TypeTapButton.fill && selectedCell == nil {
-            replacementColor = Colors.brown
-            alphaPickerView.currentColor = replacementColor
+        switch typeButtonTap {
+        case .dropper:
+            typeButtonTap = .fill
+            changeImageOfButtons()
+            return
+        case .fill:
+            return
+        default:
+            if selectedCell == nil {
+                replacementColor = Colors.brown
+                alphaPickerView.currentColor = replacementColor
+            }
+            
+            typeButtonTap = .fill
+            changeImageOfButtons()
+            
+            if let deselectedCell = selectedCell {
+                paletteCollectionView.reloadItems(at: [deselectedCell])
+            } else {
+                selectedCell = IndexPath(item: 0, section: 0)
+                paletteCollectionView.reloadItems(at: [IndexPath(item: 0, section: 0)])
+            }
         }
         
-        typeButtonTap = TypeTapButton.fill
-        changeImageOfButtons()
         
-        if let deselectedCell = selectedCell {
-            paletteCollectionView.reloadItems(at: [deselectedCell])
-        } else {
-            selectedCell = IndexPath(item: 0, section: 0)
-            paletteCollectionView.reloadItems(at: [IndexPath(item: 0, section: 0)])
-        }
+        
     }
     
     
     /// Activates the earaser button, removes the stroke of the currently selected cell
     @objc func earaserButtonDidTap() {
-        typeButtonTap = TypeTapButton.eraser
+        typeButtonTap = .eraser
+        
+        if let deselectedCell = selectedCell {
+            paletteCollectionView.reloadItems(at: [deselectedCell])
+        }
+        changeImageOfButtons()
+    }
+    
+    /// Activates the
+    @objc func dropperButtonDidTap() {
+        typeButtonTap = .dropper
         
         if let deselectedCell = selectedCell {
             paletteCollectionView.reloadItems(at: [deselectedCell])
@@ -215,7 +265,7 @@ class DrawingAreaViewController: UIViewController {
         colorPicker.delegate = self
         self.present(colorPicker, animated: true, completion: nil)
         
-        typeButtonTap = TypeTapButton.palette
+        typeButtonTap = .palette
         changeImageOfButtons()
         
         if let deselectedCell = selectedCell {
@@ -228,30 +278,55 @@ class DrawingAreaViewController: UIViewController {
     /// - Parameter gesture: recognizer attached to the drawing area
     @objc func tapGesture(_ gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: mandalaImageView)
-        let newColor = typeButtonTap == TypeTapButton.eraser ? .white : replacementColor
-        mandalaImageView.buckerFill(point, replacementColor: newColor)
+        
+        if typeButtonTap == .dropper {
+            replacementColor = mandalaImageView.getCurrentColor(point) ?? .red
+            alphaPickerView.currentColor = replacementColor
+            isColorPalette = false
+        } else {
+            let newColor = typeButtonTap == .eraser ? .white : replacementColor
+            mandalaImageView.buckerFill(point, replacementColor: newColor)
+        }
+        
     }
     
     func setImage(image: UIImage) {
         self.image = image
     }
     
+    func setPathImagesFromGallery(path: String?) {
+        pathSelectedImagesFromGallery = path
+    }
+    
     /// Changes the image on the buttons, depending on which one is selected
     /// Example:
     ///     nameButton.image = UIImage(named: "nameTap" / "nameUntap" )
     func changeImageOfButtons() {
-        let imageFillName = typeButtonTap == TypeTapButton.fill ? "fillTap" : "fillUntap"
-        let imageEraserName = typeButtonTap == TypeTapButton.eraser ? "eraserTap" : "eraserUntap"
-        let imagePalleteName = typeButtonTap == TypeTapButton.palette ? "palleteTap" : "palleteUntap"
+        let imageFillName = typeButtonTap == .fill ? "fillTap" : "fillUntap"
+        let imageEraserName = typeButtonTap == .eraser ? "eraserTap" : "eraserUntap"
+        let imagePalleteName = typeButtonTap == .palette ? "palleteTap" : "palleteUntap"
+        let imagePipetteName = typeButtonTap == .dropper ? "dropperTap" : "dropperUntap"
         
         fillButton.setImage(UIImage(named: imageFillName), for: .normal)
         eraserButton.setImage(UIImage(named: imageEraserName), for: .normal)
         colorPalleteButton.setImage(UIImage(named: imagePalleteName), for: .normal)
+        dropperButton.setImage(UIImage(named: imagePipetteName), for: .normal)
     }
     
     
     /// Saves an image in a directory
     func saveImage() {
+        
+        if let path = pathSelectedImagesFromGallery {
+            let fileManager = FileManager.default
+            do {
+                try fileManager.removeItem(atPath: path)
+            } catch {
+                debugPrint("failed to read directory – bad permissions, perhaps?")
+            }
+        }
+        
+        
         let fileManager = FileManager.default
         
         let currentDate = Date()
@@ -272,6 +347,8 @@ class DrawingAreaViewController: UIViewController {
         initialViewController.selectedIndex = 1
         self.navigationController?.pushViewController(initialViewController, animated: false)
     }
+    
+    
 }
 
 //MARK: UIScrollView Delegate
@@ -305,7 +382,7 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifierCollectionViewCell, for: indexPath) as! ChooseColorCollectionViewCell
         
-        let cellIsSelected = (typeButtonTap == TypeTapButton.fill) && indexPath == selectedCell
+        let cellIsSelected = (typeButtonTap == .fill) && (indexPath == selectedCell) && isColorPalette
         
         if indexPath.item < numItemInSection && indexPath.section == 0 {
             cell.setParameters(color: defaultColors[indexPath.item], cellIsSelected: cellIsSelected)
@@ -313,7 +390,6 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
             cell.setParameters(color: customColors[indexPath.item], cellIsSelected: cellIsSelected)
         } else if indexPath.section == 1 && indexPath.item == customColors.count {
             cell.addColor()
-            print([indexPath])
         } else {
             cell.clearCell()
         }
@@ -332,11 +408,20 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let width = (collectionView.frame.width) - CGFloat(numItemInSection) * 5 / CGFloat(numItemInSection) - 20
+        let height = collectionView.bounds.size.height / 2 - insetsCollectionView.bottom
+        let size = width < height ? width : height
+        
+        let horizontalSpace = collectionView.bounds.size.width - CGFloat(defaultColors.count - 1) * 5 - CGFloat(defaultColors.count) * size
+        insetsCollectionView.left = horizontalSpace / 2
+        insetsCollectionView.right = horizontalSpace / 2
+        
         return insetsCollectionView
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        isColorPalette = true
         
         switch indexPath.section {
         case 0:
@@ -362,7 +447,7 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
     ///   - collectionView: paletteCollectionView
     ///   - indexPath: indexPath of the selected cell
     fileprivate func updateCells(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
-        typeButtonTap = TypeTapButton.fill
+        typeButtonTap = .fill
         changeImageOfButtons()
         
         if let deselectedCell = selectedCell {
@@ -374,15 +459,12 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
         alphaPickerView.currentColor = replacementColor
         selectedCell = indexPath
         collectionView.reloadItems(at: [indexPath])
-        
-        
     }
     
 }
 
 //MARK: ColorPickerViewControllerDelegate
 extension DrawingAreaViewController: ColorPickerViewControllerDelegate {
-    
     
     func colorPickerDidChooseColor(_ color: UIColor?) {
         guard let chooseColor = color else {
@@ -393,12 +475,13 @@ extension DrawingAreaViewController: ColorPickerViewControllerDelegate {
         replacementColor = chooseColor
         alphaPickerView.currentColor = chooseColor
         
-        if typeButtonTap != TypeTapButton.palette {
+        if typeButtonTap != .palette {
             customColors.append(chooseColor)
             addСolorCell()
+        } else {
+            isColorPalette = false
         }
     }
-    
     
     /// Add new color to custom color palette row
     fileprivate func addСolorCell() {
@@ -430,6 +513,6 @@ extension DrawingAreaViewController: AlphaPickerDelegate {
     
     func valuePicked(_ color: UIColor) {
         replacementColor = color
-        alphaColorIndicator.backgroundColor  = color
+        alphaColorIndicator.backgroundColor = color
     }
 }

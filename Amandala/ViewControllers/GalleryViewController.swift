@@ -110,6 +110,7 @@ extension GalleryViewController: MandalaCollectionViewCellDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewController = storyboard.instantiateViewController(withIdentifier: "DrawingAreaViewController") as! DrawingAreaViewController
         initialViewController.setImage(image: chooseImage)
+        initialViewController.setPathImagesFromGallery(path: getPathOfSelectedImage())
         self.navigationController?.pushViewController(initialViewController, animated: false)
     }
     
@@ -127,23 +128,29 @@ extension GalleryViewController: MandalaCollectionViewCellDelegate {
     }
     
     func deleteButtonDidTap() {
-        
-        let fileManager = FileManager.default
-        guard let imagePaths = saveImages, let indexPath = selectedCell, indexPath.item < imagePaths.count else { return }
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
-        let imagePath = (documentsDirectory as NSString).appendingPathComponent(imagePaths[indexPath.item])
-        
-        do {
-            try fileManager.removeItem(atPath: imagePath)
-        } catch {
-            debugPrint("failed to read directory – bad permissions, perhaps?")
-        }
-        
+        deleteSelectedImage()
         selectedCell = nil
         getPathsAllSaveImage()
         collectionView.reloadData()
     }
     
     
+    func deleteSelectedImage() {
+        
+        guard let path = getPathOfSelectedImage() else { return }
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(atPath: path)
+        } catch {
+            debugPrint("failed to read directory – bad permissions, perhaps?")
+        }
+
+    }
+    
+    func getPathOfSelectedImage() -> String? {
+        guard let imagePaths = saveImages, let indexPath = selectedCell, indexPath.item < imagePaths.count else { return nil }
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return (documentsDirectory as NSString).appendingPathComponent(imagePaths[indexPath.item])
+    }
 }

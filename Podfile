@@ -8,7 +8,7 @@ target 'Amandala' do
   pod 'OpenCV'
   pod 'ChromaColorPicker'
   pod 'Material'
-  
+  pod 'SVGKit'
   # Pods for Amandala
 
 

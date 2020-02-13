@@ -36,7 +36,27 @@ class PaintingImageView: UIImageView {
         }
     }
     
-    
+    func getCurrentColor(_ touchPoint:CGPoint) -> UIColor? {
+        
+        guard let image = self.image, let cgImage = image.cgImage, let bitmapContext = createARGBBitmapContext() else {
+            debugPrint("image no found or fail to create context")
+            return nil
+        }
+
+        let touchPointInImage = convertPointToImage(touchPoint, image: image)
+        
+        bitmapContext.clear(CGRect(x: 0, y: 0, width: cgImage.width, height: cgImage.height))
+        bitmapContext.draw(cgImage, in: CGRect(x: 0, y: 0, width: cgImage.width, height: cgImage.height))
+        guard let data = bitmapContext.data?.assumingMemoryBound(to: UInt8.self) else { return nil }
+                
+        guard let targetColorRGBComponent = rgbComponentsAtPoint(touchPointInImage, inData: data, image: image), !targetColorRGBComponent.isBlack() else { return nil }
+        
+        let r = CGFloat(targetColorRGBComponent.red) / CGFloat(255.0)
+        let g = CGFloat(targetColorRGBComponent.green) / CGFloat(255.0)
+        let b = CGFloat(targetColorRGBComponent.blue) / CGFloat(255.0)
+        
+        return UIColor(red: r, green: g, blue: b, alpha: 1)
+    }
     
     /// Splits the image into a bitmap, determines the coordinate of pressing relative to a point in the image and the color at that point.
     /// If the color at the point of pressing is not black - fills the area with color, adds this action to previousActions
@@ -115,6 +135,8 @@ class PaintingImageView: UIImageView {
         let y = Int(CGFloat(cgImage.height) * imageViewPoint.y * scale / self.frame.size.height)
         return CGPoint(x: x, y: y)
     }
+    
+    
 
 }
 

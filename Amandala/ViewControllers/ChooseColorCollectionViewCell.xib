@@ -25,7 +25,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ag4-Pu-Cgc" customClass="UIViewCircle" customModule="Amandala" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <rect key="frame" x="1" y="1" width="48" height="48"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Ag4-Pu-Cgc" secondAttribute="height" multiplier="1:1" id="GwL-l2-JRd"/>
@@ -35,12 +35,12 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="Ag4-Pu-Cgc" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="HRw-fn-995"/>
+                <constraint firstItem="Ag4-Pu-Cgc" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" constant="-1" id="HRw-fn-995"/>
                 <constraint firstItem="Ag4-Pu-Cgc" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="K9G-rW-sLa"/>
                 <constraint firstItem="CFu-Wm-iA9" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="NeG-wU-8yN"/>
                 <constraint firstItem="Ag4-Pu-Cgc" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="VxR-kk-1lR"/>
                 <constraint firstItem="CFu-Wm-iA9" firstAttribute="centerX" secondItem="ThU-DS-HiZ" secondAttribute="centerX" id="ZOZ-Yf-XBp"/>
-                <constraint firstAttribute="top" secondItem="Ag4-Pu-Cgc" secondAttribute="top" id="c67-5O-1Mb"/>
+                <constraint firstItem="Ag4-Pu-Cgc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="c67-5O-1Mb"/>
                 <constraint firstItem="CFu-Wm-iA9" firstAttribute="centerY" secondItem="ThU-DS-HiZ" secondAttribute="centerY" id="l6d-r5-JL4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ThU-DS-HiZ"/>

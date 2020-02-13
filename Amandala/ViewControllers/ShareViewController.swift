@@ -30,12 +30,8 @@ class ShareViewController: UIViewController {
            shareButton.addTarget(self, action: #selector(shareButtonDidTap), for: .touchUpInside)
         }
     }
-    @IBOutlet weak var scrollView: UIScrollView! {
-        didSet {
-            scrollView.minimumZoomScale = 1.0
-            scrollView.maximumZoomScale = 2
-        }
-    }
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -51,8 +47,7 @@ class ShareViewController: UIViewController {
         scrollView.delegate = self
         imageView.image = savingImage
         scrollView.minimumZoomScale = 1.0
-        scrollView.maximumZoomScale = 2
-
+        scrollView.maximumZoomScale = 3
     }
     
     @objc func backButtonDidTap() {
@@ -101,7 +96,9 @@ class ShareViewController: UIViewController {
 extension ShareViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+       
         return imageView
     }
     
+
 }

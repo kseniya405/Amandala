@@ -40,7 +40,7 @@ class ChooseColorCollectionViewCell: UICollectionViewCell {
     /// draws / deletes boarder
     /// - Parameter makeBoard: whether there is a boarder
     func makeBorder(makeBoard: Bool) {
-        backgroundColorView.layer.borderWidth = makeBoard ? 3:0
+        backgroundColorView.layer.borderWidth = makeBoard ? 3 : 0
         backgroundColorView.layer.borderColor = UIColor.black.cgColor
     }
     

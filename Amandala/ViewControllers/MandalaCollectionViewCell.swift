@@ -20,18 +20,19 @@ class MandalaCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var sizeImageView: NSLayoutConstraint!
     
-    @IBOutlet weak var frontActionView: UIView!
-    @IBOutlet weak var editButton: UIButton! {
+    @IBOutlet weak var frontActionView: ViewWithCorner!
+    @IBOutlet weak var editButton: RoundButton! {
         didSet {
             editButton.addTarget(self, action: #selector(editDidTap), for: .touchUpInside)
         }
     }
-    @IBOutlet weak var shareButton: UIButton! {
+    @IBOutlet weak var shareButton: RoundButton! {
            didSet {
+            shareButton.imageView?.contentScaleFactor = 0.5
                shareButton.addTarget(self, action: #selector(shareDidTap), for: .touchUpInside)
            }
        }
-    @IBOutlet weak var deleteButton: UIButton! {
+    @IBOutlet weak var deleteButton: RoundButton! {
            didSet {
                deleteButton.addTarget(self, action: #selector(deleteDidTap), for: .touchUpInside)
            }
