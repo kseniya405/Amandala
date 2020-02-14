@@ -10,36 +10,115 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="MandalaCollectionViewCell" reuseIdentifier="MandalaCollectionViewCell" id="gTV-IL-0wX" customClass="MandalaCollectionViewCell" customModule="Amandala" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="229" height="283"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" restorationIdentifier="MandalaCollectionViewCell" reuseIdentifier="MandalaCollectionViewCell" id="gTV-IL-0wX" customClass="MandalaCollectionViewCell" customModule="Amandala" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="209" height="254"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="229" height="283"/>
+                <rect key="frame" x="0.0" y="0.0" width="209" height="254"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GSD-G1-YQf" customClass="ImageViewWithCorner" customModule="Amandala" customModuleProvider="target">
-                        <rect key="frame" x="5" y="54" width="219" height="219"/>
+                        <rect key="frame" x="10" y="54" width="189" height="190"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="GSD-G1-YQf" secondAttribute="height" multiplier="1:1" id="hcv-YE-AKT"/>
+                            <constraint firstAttribute="width" secondItem="GSD-G1-YQf" secondAttribute="height" multiplier="1:1" priority="950" id="Jrx-8X-YOh"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" priority="952" constant="200" id="m54-l2-MlZ"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isShadowPathAutoSizing" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nhf-hP-brg" customClass="ViewWithCorner" customModule="Amandala" customModuleProvider="target">
+                        <rect key="frame" x="10" y="54" width="189" height="190"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6YZ-Hy-02D">
+                                <rect key="frame" x="20" y="20" width="149" height="150"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igu-Va-G6N" customClass="RoundButton" customModule="Amandala" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="149" height="65.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Edit">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="P0b-jr-GdV">
+                                        <rect key="frame" x="0.0" y="85.5" width="149" height="64.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yB-Xj-CZh" customClass="RoundButton" customModule="Amandala" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="64.5" height="64.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="9yB-Xj-CZh" secondAttribute="height" multiplier="1:1" id="4td-bb-RUg"/>
+                                                </constraints>
+                                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="5" maxX="5" maxY="5"/>
+                                                <state key="normal" image="share">
+                                                    <color key="titleShadowColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="ultraLight"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQm-wA-jCi" customClass="RoundButton" customModule="Amandala" customModuleProvider="target">
+                                                <rect key="frame" x="84.5" y="0.0" width="64.5" height="64.5"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="nQm-wA-jCi" secondAttribute="height" multiplier="1:1" id="lOb-31-eo1"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                <state key="normal" image="trash">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="nQm-wA-jCi" firstAttribute="width" secondItem="9yB-Xj-CZh" secondAttribute="width" id="Uk1-RF-cF9"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6YZ-Hy-02D" firstAttribute="centerY" secondItem="Nhf-hP-brg" secondAttribute="centerY" id="33E-iF-t1Y"/>
+                            <constraint firstItem="6YZ-Hy-02D" firstAttribute="width" secondItem="Nhf-hP-brg" secondAttribute="width" constant="-40" id="RTP-Ql-jET"/>
+                            <constraint firstItem="6YZ-Hy-02D" firstAttribute="centerX" secondItem="Nhf-hP-brg" secondAttribute="centerX" id="hbO-bR-oua"/>
+                            <constraint firstItem="6YZ-Hy-02D" firstAttribute="height" secondItem="Nhf-hP-brg" secondAttribute="height" constant="-40" id="pFV-ie-H4l"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="GSD-G1-YQf" secondAttribute="bottom" constant="10" id="73v-YK-oc2"/>
+                <constraint firstItem="Nhf-hP-brg" firstAttribute="height" secondItem="GSD-G1-YQf" secondAttribute="height" id="MC3-h0-oM4"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="GSD-G1-YQf" secondAttribute="trailing" constant="10" id="Okf-7A-Vti"/>
                 <constraint firstItem="GSD-G1-YQf" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="X9Z-FZ-ix4"/>
                 <constraint firstItem="GSD-G1-YQf" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="laJ-6z-Pbh"/>
+                <constraint firstItem="Nhf-hP-brg" firstAttribute="centerY" secondItem="GSD-G1-YQf" secondAttribute="centerY" priority="750" id="nxp-B8-BMg"/>
+                <constraint firstItem="Nhf-hP-brg" firstAttribute="width" secondItem="GSD-G1-YQf" secondAttribute="width" id="tae-Jg-Evd"/>
+                <constraint firstItem="Nhf-hP-brg" firstAttribute="centerX" secondItem="GSD-G1-YQf" secondAttribute="centerX" id="z7J-a2-M15"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="229" height="283"/>
+            <size key="customSize" width="238" height="337"/>
             <connections>
+                <outlet property="deleteButton" destination="nQm-wA-jCi" id="AWU-B7-vs6"/>
+                <outlet property="editButton" destination="igu-Va-G6N" id="N0w-eO-fHF"/>
+                <outlet property="frontActionView" destination="Nhf-hP-brg" id="KX2-dz-Ejd"/>
                 <outlet property="imageView" destination="GSD-G1-YQf" id="nVy-nd-ogC"/>
+                <outlet property="shareButton" destination="9yB-Xj-CZh" id="4Qi-Ot-bse"/>
+                <outlet property="sizeImageView" destination="m54-l2-MlZ" id="R17-2y-NCI"/>
             </connections>
-            <point key="canvasLocation" x="261.59420289855075" y="215.95982142857142"/>
+            <point key="canvasLocation" x="107.97101449275362" y="237.05357142857142"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="share" width="96" height="96"/>
+        <image name="trash" width="96" height="96"/>
+    </resources>
 </document>
