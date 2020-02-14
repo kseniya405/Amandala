@@ -106,45 +106,21 @@ extension GalleryViewController: MandalaCollectionViewCellDelegate {
         guard let indexSelectedCell = selectedCell else { return }
         let cell = collectionView.cellForItem(at: indexSelectedCell) as! MandalaCollectionViewCell
         let image = cell.getImage()
-        guard let chooseImage = image else { return }
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: "DrawingAreaViewController") as! DrawingAreaViewController
-        initialViewController.setImage(image: chooseImage)
-        initialViewController.setPathImagesFromGallery(path: getPathOfSelectedImage())
-        self.navigationController?.pushViewController(initialViewController, animated: false)
+        Routers().goToDrawingGallery(image: image, currentViewController: self)
     }
     
     func shareButtonDidTap() {
         guard let indexSelectedCell = selectedCell else { return }
         let cell = collectionView.cellForItem(at: indexSelectedCell) as! MandalaCollectionViewCell
         let image = cell.getImage()
-        guard let chooseImage = image else { return }
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: "ShareViewController") as! ShareViewController
-        initialViewController.setImage(image: chooseImage)
-        self.navigationController?.pushViewController(initialViewController, animated: false)
-        
+        Routers().goToShareScreen(image: image, currentViewController: self)
     }
     
     func deleteButtonDidTap() {
-        deleteSelectedImage()
+        Utilits().deleteImageFromDirectory(pathSelectedImagesFromGallery: getPathOfSelectedImage())
         selectedCell = nil
         getPathsAllSaveImage()
         collectionView.reloadData()
-    }
-    
-    
-    func deleteSelectedImage() {
-        
-        guard let path = getPathOfSelectedImage() else { return }
-        let fileManager = FileManager.default
-        do {
-            try fileManager.removeItem(atPath: path)
-        } catch {
-            debugPrint("failed to read directory – bad permissions, perhaps?")
-        }
-
     }
     
     func getPathOfSelectedImage() -> String? {

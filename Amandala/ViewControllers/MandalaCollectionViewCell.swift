@@ -29,7 +29,7 @@ class MandalaCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shareButton: RoundButton! {
            didSet {
             shareButton.imageView?.contentScaleFactor = 0.5
-               shareButton.addTarget(self, action: #selector(shareDidTap), for: .touchUpInside)
+               shareButton.addTarget(self, action: #selector(shareButtonDidTap), for: .touchUpInside)
            }
        }
     @IBOutlet weak var deleteButton: RoundButton! {

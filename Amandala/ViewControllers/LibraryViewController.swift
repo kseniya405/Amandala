@@ -87,12 +87,7 @@ extension LibraryViewController: UITableViewDelegate {
 extension LibraryViewController:  LibraryTableCellDelegate {
     
     func imageDidChange(image: UIImage?) {
-        guard let chooseImage = image else { return }
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: "DrawingAreaViewController") as! DrawingAreaViewController
-        initialViewController.setImage(image: chooseImage)
-        self.navigationController?.pushViewController(initialViewController, animated: false)
+        Routers().goToDrawingGallery(image: image, currentViewController: self)
     }
-    
 }
 

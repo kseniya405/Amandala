@@ -10,6 +10,8 @@ import UIKit
 import ChromaColorPicker
 import DeviceCheck
 
+
+//MARK: constants
 /// cell identifier of the CollectionView palette
 fileprivate let identifierCollectionViewCell = "ChooseColorCollectionViewCell"
 
@@ -43,6 +45,7 @@ fileprivate var typeButtonTap = TypeTapButton.fill
 /// Controls the area screen for drawing
 class DrawingAreaViewController: UIViewController {
     
+// MARK: outlets
     @IBOutlet weak var topBarView: UIView!
     @IBOutlet weak var mandalaImageView: PaintingImageView!    
     @IBOutlet weak var imageScrollView: UIScrollView! {
@@ -61,25 +64,27 @@ class DrawingAreaViewController: UIViewController {
     
     @IBOutlet weak var undoButton: UIButton! {
         didSet {
-            undoButton.addTarget(self, action: #selector(undoDidTap), for: .touchUpInside)
+            undoButton.addTarget(self, action: #selector(undoButtonDidTap), for: .touchUpInside)
         }
     }
     
     @IBOutlet weak var redoButton: UIButton! {
         didSet {
-            redoButton.addTarget(self, action: #selector(redoDidTap), for: .touchUpInside)
+            redoButton.addTarget(self, action: #selector(redoButtonDidTap), for: .touchUpInside)
         }
     }
     
     @IBOutlet weak var saveButton: UIButton! {
         didSet {
-            saveButton.addTarget(self, action: #selector(saveDidTap), for: .touchUpInside)
+            saveButton.addTarget(self, action: #selector(saveButtonDidTap), for: .touchUpInside)
         }
     }
     
     @IBOutlet weak var shareButton: UIButton! {
         didSet {
-            shareButton.addTarget(self, action: #selector(shareDidTap), for: .touchUpInside)
+            shareButton.imageView?.tintColor = .black
+            shareButton.tintColor = .black
+            shareButton.addTarget(self, action: #selector(shareButtonDidTap), for: .touchUpInside)
         }
     }
     
@@ -119,7 +124,11 @@ class DrawingAreaViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var alphaPickerWidth: NSLayoutConstraint!
+    @IBOutlet weak var alphaPickerWidth: NSLayoutConstraint! {
+        didSet {
+            alphaPickerWidth.constant = UIDevice().model == "iPad" ? alphaPickerWidthForIPad : alphaPickerWidthForIPhone
+        }
+    }
     
     @IBOutlet weak var alphaColorIndicator: UIViewCircle! {
         didSet {
@@ -134,6 +143,7 @@ class DrawingAreaViewController: UIViewController {
     }
     
     
+//MARK: variabels
     /// colors in the palette of colors that the user selected (the second row of the palette)
     var customColors = [UIColor]()
     
@@ -141,7 +151,7 @@ class DrawingAreaViewController: UIViewController {
     var replacementColor: UIColor = Colors.brown
     
     /// index of the selected cell in colorPalleteButton
-    var selectedCell: IndexPath?
+    var selectedCell: IndexPath? = IndexPath(item: 0, section: 0)
     
     /// if the image was opened from the gallery screen, then this is the path to this image in the file manager.
     /// need to delete the previous version of the picture after saving the new
@@ -153,59 +163,57 @@ class DrawingAreaViewController: UIViewController {
     /// indicates whether the selected color is a color from the palette
     var isColorPalette = true
     
-    
+//MARK: Life cicle
     override func viewDidLayoutSubviews() {
         topBarView.round(corners: [.bottomLeft, .bottomRight], radius: 50)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        alphaPickerView.delegate = self
-        alphaPickerView.layer.borderWidth = 1
-        alphaPickerView.layer.borderColor = UIColor.black.cgColor
+        setupMandalaImageView()
+        setupPaletteCollectionView()
         
         imageScrollView.delegate = self
-        
-        selectedCell = IndexPath(item: 0, section: 0)
-        paletteCollectionView.delegate = self
-        paletteCollectionView.dataSource = self
-        paletteCollectionView.register(UINib(nibName: identifierCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: identifierCollectionViewCell)
-        
-        
+        alphaPickerView.delegate = self
+    }
+    
+    func setupMandalaImageView() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture(_:)))
         mandalaImageView.addGestureRecognizer(tap)
         mandalaImageView.isUserInteractionEnabled = true
         mandalaImageView.image = image
-        
-        alphaPickerWidth.constant = UIDevice().model == "iPad" ? alphaPickerWidthForIPad : alphaPickerWidthForIPhone
-        
-        
-        
     }
     
+    func setupPaletteCollectionView() {
+        paletteCollectionView.delegate = self
+        paletteCollectionView.dataSource = self
+        paletteCollectionView.register(UINib(nibName: identifierCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: identifierCollectionViewCell)
+    }
+    
+
+//MARK: Button activity
     @objc func backButtonDidTap() {
         self.dismiss()
     }
     
-    @objc func undoDidTap() {
+    @objc func undoButtonDidTap() {
         mandalaImageView.undo()
     }
     
-    @objc func redoDidTap() {
+    @objc func redoButtonDidTap() {
         mandalaImageView.redo()
     }
     
-    @objc func saveDidTap() {
-        saveImage()
-        goToLibraryScreen()
+    @objc func saveButtonDidTap() {
+        let utilits = Utilits()
+        utilits.saveImageToDirectory(savingImage: mandalaImageView.image)
+        utilits.deleteImageFromDirectory(pathSelectedImagesFromGallery: pathSelectedImagesFromGallery)
+        
+        Routers().goToLibraryScreen(vc: self)
     }
     
-    @objc func shareDidTap() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: "ShareViewController") as! ShareViewController
-        initialViewController.setImage(image: mandalaImageView.image)
-        self.navigationController?.pushViewController(initialViewController, animated: false)
+    @objc func shareButtonDidTap() {
+        Routers().goToShareScreen(vc: self, image: image)
     }
     
     /// Activates the fill button, traces the selected color (default - Colors.brown)
@@ -234,11 +242,7 @@ class DrawingAreaViewController: UIViewController {
                 paletteCollectionView.reloadItems(at: [IndexPath(item: 0, section: 0)])
             }
         }
-        
-        
-        
     }
-    
     
     /// Activates the earaser button, removes the stroke of the currently selected cell
     @objc func earaserButtonDidTap() {
@@ -277,6 +281,22 @@ class DrawingAreaViewController: UIViewController {
         }
     }
     
+    /// Changes the image on the buttons, depending on which one is selected
+    /// Example:
+    ///     nameButton.image = UIImage(named: "nameTap" / "nameUntap" )
+    func changeImageOfButtons() {
+        let imageFillName = typeButtonTap == .fill ? "fillTap" : "fillUntap"
+        let imageEraserName = typeButtonTap == .eraser ? "eraserTap" : "eraserUntap"
+        let imagePalleteName = typeButtonTap == .palette ? "palleteTap" : "palleteUntap"
+        let imagePipetteName = typeButtonTap == .dropper ? "dropperTap" : "dropperUntap"
+        
+        fillButton.setImage(UIImage(named: imageFillName), for: .normal)
+        eraserButton.setImage(UIImage(named: imageEraserName), for: .normal)
+        colorPalleteButton.setImage(UIImage(named: imagePalleteName), for: .normal)
+        dropperButton.setImage(UIImage(named: imagePipetteName), for: .normal)
+    }
+    
+//MARK: TapGestureRecognizer
     /// Нandles the user’s swing to the drawing: when touched, calls the method of painting over the selected point with the selected color
     ///
     /// - Parameter gesture: recognizer attached to the drawing area
@@ -302,57 +322,6 @@ class DrawingAreaViewController: UIViewController {
         pathSelectedImagesFromGallery = path
     }
     
-    /// Changes the image on the buttons, depending on which one is selected
-    /// Example:
-    ///     nameButton.image = UIImage(named: "nameTap" / "nameUntap" )
-    func changeImageOfButtons() {
-        let imageFillName = typeButtonTap == .fill ? "fillTap" : "fillUntap"
-        let imageEraserName = typeButtonTap == .eraser ? "eraserTap" : "eraserUntap"
-        let imagePalleteName = typeButtonTap == .palette ? "palleteTap" : "palleteUntap"
-        let imagePipetteName = typeButtonTap == .dropper ? "dropperTap" : "dropperUntap"
-        
-        fillButton.setImage(UIImage(named: imageFillName), for: .normal)
-        eraserButton.setImage(UIImage(named: imageEraserName), for: .normal)
-        colorPalleteButton.setImage(UIImage(named: imagePalleteName), for: .normal)
-        dropperButton.setImage(UIImage(named: imagePipetteName), for: .normal)
-    }
-    
-    
-    /// Saves an image in a directory
-    func saveImage() {
-        
-        if let path = pathSelectedImagesFromGallery {
-            let fileManager = FileManager.default
-            do {
-                try fileManager.removeItem(atPath: path)
-            } catch {
-                debugPrint("failed to read directory – bad permissions, perhaps?")
-            }
-        }
-        
-        
-        let fileManager = FileManager.default
-        
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "ddMMyyyyhhmmssa"
-        let convertedDate: String = dateFormatter.string(from: currentDate)
-        
-        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("\(convertedDate).png")
-        let image = mandalaImageView.image
-        let imageData = image?.pngData()
-        fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
-        
-    }
-    
-    func goToLibraryScreen() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! CustomTabBarViewController
-        initialViewController.selectedIndex = 1
-        self.navigationController?.pushViewController(initialViewController, animated: false)
-    }
-    
-    
 }
 
 //MARK: UIScrollView Delegate
@@ -361,7 +330,6 @@ extension DrawingAreaViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return viewForZoom
     }
-    
 }
 
 //MARK: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout

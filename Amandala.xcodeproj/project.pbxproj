@@ -110,6 +110,8 @@
 		9D7B68A723EAD2D4002425C3 /* 13.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D7B68A623EAD2D3002425C3 /* 13.png */; };
 		9D7B68A923EAEFB5002425C3 /* PDFSpecial1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9D7B68A823EAEFB5002425C3 /* PDFSpecial1.pdf */; };
 		9D7B68AB23EB1221002425C3 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7B68AA23EB1221002425C3 /* RoundButton.swift */; };
+		9D7E93C723F700C000023E69 /* Utilits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7E93C623F700C000023E69 /* Utilits.swift */; };
+		9D7E93C923F704A600023E69 /* Routers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7E93C823F704A600023E69 /* Routers.swift */; };
 		9D7FF13923CF0F7B00A00367 /* UIViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7FF13823CF0F7B00A00367 /* UIViewCircle.swift */; };
 		9D83095823D607E600BCA699 /* MyPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D83095723D607E600BCA699 /* MyPresentationController.swift */; };
 		9D84A47223CE009B00654ACF /* ChooseColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D84A47023CE009B00654ACF /* ChooseColorCollectionViewCell.swift */; };
@@ -241,6 +243,8 @@
 		9D7B68A623EAD2D3002425C3 /* 13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13.png; sourceTree = "<group>"; };
 		9D7B68A823EAEFB5002425C3 /* PDFSpecial1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PDFSpecial1.pdf; sourceTree = "<group>"; };
 		9D7B68AA23EB1221002425C3 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		9D7E93C623F700C000023E69 /* Utilits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilits.swift; sourceTree = "<group>"; };
+		9D7E93C823F704A600023E69 /* Routers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routers.swift; sourceTree = "<group>"; };
 		9D7FF13823CF0F7B00A00367 /* UIViewCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewCircle.swift; sourceTree = "<group>"; };
 		9D83095723D607E600BCA699 /* MyPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPresentationController.swift; sourceTree = "<group>"; };
 		9D84A47023CE009B00654ACF /* ChooseColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -295,7 +299,7 @@
 				9D48983523BDE25A001EC93B /* Main.storyboard */,
 				9D717EA523DF458D007081C2 /* ViewControllers */,
 				9D717EA423DF445C007081C2 /* CustomElement */,
-				9D48984723BE1F6C001EC93B /* Utilits */,
+				9D48984723BE1F6C001EC93B /* Settings */,
 				9D70FB1223E07CF8007072C3 /* Models */,
 				9D48984823BE1F79001EC93B /* Resources */,
 				9D70FA8723E06CFE007072C3 /* LibraryData */,
@@ -306,7 +310,7 @@
 			path = Amandala;
 			sourceTree = "<group>";
 		};
-		9D48984723BE1F6C001EC93B /* Utilits */ = {
+		9D48984723BE1F6C001EC93B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				9D48984323BE17E4001EC93B /* UIColor+HEX.swift */,
@@ -314,8 +318,10 @@
 				9D48984B23BE32E9001EC93B /* UIView+CornerRadius.swift */,
 				9D84A47423CE07E000654ACF /* View+ActivityIndicator.swift */,
 				9DAF6F9923D850380077AD54 /* UIView+makeCorners.swift */,
+				9D7E93C623F700C000023E69 /* Utilits.swift */,
+				9D7E93C823F704A600023E69 /* Routers.swift */,
 			);
-			path = Utilits;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		9D48984823BE1F79001EC93B /* Resources */ = {
@@ -731,6 +737,7 @@
 			files = (
 				9D48983423BDE25A001EC93B /* DrawingAreaViewController.swift in Sources */,
 				9DAF6F9A23D850380077AD54 /* UIView+makeCorners.swift in Sources */,
+				9D7E93C723F700C000023E69 /* Utilits.swift in Sources */,
 				9D712E4D23E025CC007BBEF2 /* LibraryViewController.swift in Sources */,
 				9D71DB1323E1A6A400735AA9 /* ImageViewWithCorner.swift in Sources */,
 				9D70FB1423E07EA7007072C3 /* HardcodedValuePictures.swift in Sources */,
@@ -744,6 +751,7 @@
 				9D6E8D2723D7304400ECE22D /* AlphaPicker.swift in Sources */,
 				9DAF6F9523D8472B0077AD54 /* LinkedList.swift in Sources */,
 				9D72781023E431F60034769E /* CustomTabBarViewController.swift in Sources */,
+				9D7E93C923F704A600023E69 /* Routers.swift in Sources */,
 				9D7B68AB23EB1221002425C3 /* RoundButton.swift in Sources */,
 				9D84A47223CE009B00654ACF /* ChooseColorCollectionViewCell.swift in Sources */,
 				9D715B3023C8D4E3009BBCD1 /* PaintingImageView.swift in Sources */,
