@@ -137,24 +137,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lOF-c4-Q3d" userLabel="bottomView">
                                 <rect key="frame" x="0.0" y="642" width="375" height="170"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="e87-gd-AwN">
+                                    <stackView opaque="NO" contentMode="scaleAspectFit" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="e87-gd-AwN">
                                         <rect key="frame" x="47" y="15" width="281" height="45"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKc-UI-TSQ" userLabel="fill">
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKc-UI-TSQ" userLabel="fill">
                                                 <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="45"/>
                                                 <state key="normal" image="fillTap"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1X-Dw-g0x" userLabel="eraser">
-                                                <rect key="frame" x="70.666666666666671" y="0.0" width="57" height="45"/>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GRu-R4-XE8">
+                                                <rect key="frame" x="70.666666666666686" y="0.0" width="57" height="45"/>
+                                                <state key="normal" image="dropperUntap"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1X-Dw-g0x" userLabel="eraser">
+                                                <rect key="frame" x="147.66666666666666" y="0.0" width="56.666666666666657" height="45"/>
                                                 <state key="normal" image="eraserUntap"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahN-mB-r0F" userLabel="colorPalette">
-                                                <rect key="frame" x="147.66666666666666" y="0.0" width="56.666666666666657" height="45"/>
-                                                <state key="normal" image="palleteUntap"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GRu-R4-XE8">
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahN-mB-r0F" userLabel="colorPalette">
                                                 <rect key="frame" x="224.33333333333331" y="0.0" width="56.666666666666686" height="45"/>
-                                                <state key="normal" image="dropperUntap"/>
+                                                <state key="normal" image="palleteUntap"/>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -326,8 +326,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9L7-XD-bmv" firstAttribute="width" secondItem="YxX-k2-Cza" secondAttribute="width" multiplier="0.893333" id="0sy-SV-HzA"/>
+                            <constraint firstItem="9L7-XD-bmv" firstAttribute="centerX" secondItem="nMI-pA-DxM" secondAttribute="centerX" id="3hf-Wv-0Yj"/>
                             <constraint firstItem="feY-5y-zoO" firstAttribute="width" secondItem="YxX-k2-Cza" secondAttribute="width" multiplier="0.75" id="5Jp-Ow-YcP"/>
-                            <constraint firstItem="9L7-XD-bmv" firstAttribute="leading" secondItem="nMI-pA-DxM" secondAttribute="leading" constant="20" id="6eT-H5-r6S"/>
                             <constraint firstItem="lAf-nv-uqd" firstAttribute="centerX" secondItem="nMI-pA-DxM" secondAttribute="centerX" id="6oS-Ns-745"/>
                             <constraint firstItem="feY-5y-zoO" firstAttribute="top" secondItem="9L7-XD-bmv" secondAttribute="bottom" constant="51.666666666666629" id="J0a-eO-KTb"/>
                             <constraint firstItem="EZT-Jo-wNh" firstAttribute="bottom" secondItem="nMI-pA-DxM" secondAttribute="top" constant="60" id="PWn-za-zUf"/>
@@ -340,7 +340,6 @@
                             <constraint firstItem="lAf-nv-uqd" firstAttribute="centerY" secondItem="nMI-pA-DxM" secondAttribute="centerY" id="rfJ-Y7-46a"/>
                             <constraint firstItem="nMI-pA-DxM" firstAttribute="bottom" secondItem="EZT-Jo-wNh" secondAttribute="bottom" constant="674" id="s2L-xh-yKJ"/>
                             <constraint firstItem="xoj-Ob-TQ9" firstAttribute="width" secondItem="YxX-k2-Cza" secondAttribute="width" multiplier="0.893333" id="xTG-hm-PQo"/>
-                            <constraint firstItem="nMI-pA-DxM" firstAttribute="trailing" secondItem="9L7-XD-bmv" secondAttribute="trailing" constant="20" id="ycB-3r-a3d"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nMI-pA-DxM"/>
                     </view>
@@ -490,7 +489,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="TabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rdL-HH-jBt" customClass="CustomTabBarViewController" customModule="Amandala" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="0op-Xh-FdV"/>
-                    <tabBar key="tabBar" contentMode="bottom" insetsLayoutMarginsFromSafeArea="NO" id="GZk-sz-Mq4">
+                    <tabBar key="tabBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" id="GZk-sz-Mq4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -508,12 +507,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dropperUntap" width="96" height="96"/>
-        <image name="eraserUntap" width="34" height="34"/>
-        <image name="fillTap" width="34" height="34"/>
+        <image name="dropperUntap" width="30" height="30"/>
+        <image name="eraserUntap" width="30" height="30"/>
+        <image name="fillTap" width="30" height="30"/>
         <image name="gallery" width="28" height="23"/>
         <image name="library" width="25" height="18"/>
-        <image name="palleteUntap" width="32" height="32"/>
+        <image name="palleteUntap" width="48" height="48"/>
         <image name="remove" width="25" height="21"/>
         <image name="save" width="25" height="25"/>
         <image name="save_share" width="25" height="23"/>

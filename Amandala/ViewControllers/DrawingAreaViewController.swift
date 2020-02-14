@@ -87,28 +87,32 @@ class DrawingAreaViewController: UIViewController {
     
     @IBOutlet weak var fillButton: UIButton! {
         didSet {
+            fillButton.imageView?.contentMode = .scaleAspectFit
             fillButton.addTarget(self, action: #selector(fillButtonDidTap), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var dropperButton: UIButton!   {
+        didSet {
+            dropperButton.imageView?.contentMode = .scaleAspectFit
+            dropperButton.addTarget(self, action: #selector(dropperButtonDidTap), for: .touchUpInside)
         }
     }
     
     @IBOutlet weak var eraserButton: UIButton!  {
         didSet {
+            eraserButton.imageView?.contentMode = .scaleAspectFit
             eraserButton.addTarget(self, action: #selector(earaserButtonDidTap), for: .touchUpInside)
         }
     }
     
     @IBOutlet weak var colorPalleteButton: UIButton!  {
         didSet {
+            colorPalleteButton.imageView?.contentMode = .scaleAspectFit
             colorPalleteButton.addTarget(self, action: #selector(paletteButtonDidTap), for: .touchUpInside)
         }
     }
-    
-    @IBOutlet weak var dropperButton: UIButton!   {
-        didSet {
-            dropperButton.addTarget(self, action: #selector(dropperButtonDidTap), for: .touchUpInside)
-        }
-    }
-    
+        
     @IBOutlet weak var alphaPickerView: AlphaPicker! {
         didSet {
             alphaPickerView.currentColor = Colors.brown
@@ -437,7 +441,6 @@ extension DrawingAreaViewController: UICollectionViewDelegate, UICollectionViewD
                     updateCells(collectionView, indexPath)
                 }
             }
-            
         }
     }
     
@@ -493,7 +496,8 @@ extension DrawingAreaViewController: ColorPickerViewControllerDelegate {
                 paletteCollectionView.reloadItems(at: [deselectedCell])
             }
             if customColors.count >= numItemInSection {
-                paletteCollectionView.deleteItems(at: [IndexPath(item: customColors.count - 1, section: 1)])
+                customColors.remove(at: 0)
+                paletteCollectionView.deleteItems(at: [IndexPath(item: 0, section: 1)])
             }
             selectedCell = IndexPath(item: customColors.count - 1, section: 1)
             paletteCollectionView.insertItems(at: [IndexPath(item: customColors.count - 1, section: 1)])

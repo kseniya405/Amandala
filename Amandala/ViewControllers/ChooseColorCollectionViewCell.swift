@@ -18,6 +18,12 @@ class ChooseColorCollectionViewCell: UICollectionViewCell {
             imageView.image = UIImage(named: "add")
         }
     }
+    @IBOutlet weak var checkImage: UIImageView! {
+        didSet {
+            checkImage.image = UIImage(named: "checkmark")
+            checkImage.contentMode = .scaleAspectFit
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,20 +39,21 @@ class ChooseColorCollectionViewCell: UICollectionViewCell {
             backgroundColorView.backgroundColor = color
             imageView.isHidden = true
         }
-        makeBorder(makeBoard: cellIsSelected)
+        makeSelect(makeSelect: cellIsSelected)
     }
     
     
     /// draws / deletes boarder
     /// - Parameter makeBoard: whether there is a boarder
-    func makeBorder(makeBoard: Bool) {
-        backgroundColorView.layer.borderWidth = makeBoard ? 3 : 0
-        backgroundColorView.layer.borderColor = UIColor.black.cgColor
+    func makeSelect(makeSelect: Bool) {
+//        backgroundColorView.layer.borderWidth = makeSelect ? 3 : 0
+//        backgroundColorView.layer.borderColor = UIColor.black.cgColor
+        checkImage.isHidden = !makeSelect
     }
     
     /// cleans the cell
     func clearCell() {
-        makeBorder(makeBoard: false)
+        makeSelect(makeSelect: false)
         backgroundColorView.backgroundColor = .white
     }
     
@@ -59,7 +66,7 @@ class ChooseColorCollectionViewCell: UICollectionViewCell {
     func addColor() {
         backgroundColorView.backgroundColor = .clear
          imageView.image = UIImage(named: "add")
-        makeBorder(makeBoard: false)
+        makeSelect(makeSelect: false)
     }
     
 
